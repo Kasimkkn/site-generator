@@ -8,23 +8,26 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Settings from './pages/settings/Settings';
 import SettingsLayout from './pages/settings/SettingsLayout';
+import { LayoutProvider } from "./context/LayoutContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/settings" element={<SettingsLayout />}>
-            <Route index element={<Settings />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <LayoutProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/settings" element={<SettingsLayout />}>
+              <Route index element={<Settings />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </LayoutProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
