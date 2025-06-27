@@ -1,8 +1,9 @@
 
 export interface NavbarData {
   logo?: string;
+  buttonText?: string;
   companyName?: string;
-  navbarData?: NavbarLink[];
+  menus?: NavbarLink[];
 }
 
 export interface NavbarLink {
@@ -41,6 +42,8 @@ export interface ServiceData {
 }
 
 export interface ServiceCard {
+  id?: string;
+  image?: string;
   title: string;
   description: string;
   color?: string;
@@ -121,8 +124,8 @@ export interface FooterLinkSection {
 
 export interface FooterLink {
   id?: string;
-  title: string;
-  url: string;
+  name: string;
+  href: string;
 }
 
 export interface PageHeaderData {

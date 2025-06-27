@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { AboutData } from '../../types/global';
 import { AnimatePresence, motion } from 'framer-motion';
+import { AboutData } from '../../types/global';
 
 interface AboutUsProps {
     data?: AboutData;
@@ -9,7 +9,7 @@ interface AboutUsProps {
 
 const AboutUs: React.FC<AboutUsProps> = ({ data }) => {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-    
+
     return (
         <section id="about" className="py-20 px-[10%] md:px-[5%] lg:px-[10%]">
             <div className='flex mb-12 items-center justify-between w-full'>
