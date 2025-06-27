@@ -24,7 +24,7 @@ import Service2 from './service/Service2';
 import Teams from './teams/Teams';
 import PageHeader from './pageheader/PageHeader';
 
-export const componentMap: Record<string, React.ComponentType<any>> = {
+export const componentMap: { [key: string]: React.ComponentType<any> } = {
     Navbar,
     Navbar1,
     Hero,

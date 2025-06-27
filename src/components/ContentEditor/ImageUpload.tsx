@@ -15,7 +15,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     label, 
     onChange, 
     preview, 
-    height = "h-56" 
+    height = "h-32" 
 }) => (
     <div className="space-y-2">
         <label className="block text-sm font-medium text-text">{label}</label>
