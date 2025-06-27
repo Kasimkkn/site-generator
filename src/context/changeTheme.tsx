@@ -8,19 +8,33 @@ interface ThemeProviderProps {
     children: ReactNode;
 }
 
+interface ThemeData {
+    primary: string;
+    background: string;
+    text: string;
+}
+
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-    const defaultTheme = {
+    const defaultTheme: ThemeData = {
         primary: "#7579ef",
         background: "#ffffff",
         text: "#111111",
     };
 
-    const [theme, setTheme] = useState(() => {
-        const storedTheme = localStorage.getItem("app-theme");
-        return storedTheme ? JSON.parse(storedTheme) : defaultTheme;
+    const [theme, setTheme] = useState<ThemeData>(() => {
+        try {
+            const storedTheme = localStorage.getItem("app-theme");
+            if (storedTheme) {
+                const parsed = JSON.parse(storedTheme) as ThemeData;
+                return parsed;
+            }
+            return defaultTheme;
+        } catch {
+            return defaultTheme;
+        }
     });
 
-    const updateTheme = (newTheme: typeof defaultTheme) => {
+    const updateTheme = (newTheme: ThemeData) => {
         setTheme(newTheme);
 
         Object.entries(newTheme).forEach(([key, value]) => {
@@ -34,7 +48,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
         Object.entries(theme).forEach(([key, value]) => {
             document.documentElement.style.setProperty(`--color-${key}`, value);
         });
-    }, []);
+    }, [theme]);
 
     const contextValue = useMemo(() => ({ theme, setTheme: updateTheme }), [theme]);
     
