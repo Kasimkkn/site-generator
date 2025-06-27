@@ -19,9 +19,9 @@ const Index = () => {
       {/* Left Side - Scenic Background */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-blue-600/20 z-10" />
-        <img 
-          src="/lovable-uploads/7e2d4a76-7402-4b43-98b7-1f81eac56b45.png" 
-          alt="Scenic mountains" 
+        <img
+          src="/images/login.jpg"
+          alt="Scenic mountains"
           className="w-full h-full object-cover"
         />
         <div className="absolute bottom-8 left-8 z-20 text-white">
