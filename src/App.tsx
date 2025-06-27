@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -7,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Settings from './pages/settings/Settings';
 import SettingsLayout from './pages/settings/SettingsLayout';
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -17,7 +19,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/" element={<SettingsLayout />}>
+          <Route path="/settings" element={<SettingsLayout />}>
             <Route index element={<Settings />} />
           </Route>
           <Route path="*" element={<NotFound />} />
