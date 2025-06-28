@@ -11,10 +11,9 @@ import { LayoutContext } from '@/context/LayoutContext';
 import { capitalizeFirstLetter } from '@/utils/features';
 import { ThemeSelector } from '@/components/ThemeSelector';
 import ChangePageModal from '@/components/settingsPanelComponents/ChangePageModal';
-import CommonModal from '@/components/settingsPanelComponents/CommonModal';
 import ProjectDetailsModal from '@/components/settingsPanelComponents/ProjectDetailsModal';
-import SmallModal from '@/components/settingsPanelComponents/SmallModal';
 import toast from 'react-hot-toast';
+import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
 
 export const NAV_ITEMS = [{
   id: 'navbar',
@@ -81,8 +80,8 @@ const NavItem = ({ label, icon: Icon, onClick }: NavItemsProps) => (
       <Icon size={20} />
     </button>
 
-    {/* Tooltip */}
-    <div className="absolute left-16 top-1/2 transform -translate-y-1/2 bg-black text-lime-400 px-3 py-2 text-sm font-black uppercase tracking-wide border-2 border-lime-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50">
+    {/* Fixed Tooltip */}
+    <div className="absolute left-14 top-1/2 transform -translate-y-1/2 bg-black text-lime-400 px-3 py-2 text-sm font-black uppercase tracking-wide border-2 border-lime-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-[100] shadow-lg">
       {label}
       <div className="absolute left-0 top-1/2 transform -translate-x-1 -translate-y-1/2 w-2 h-2 bg-lime-400 rotate-45 border-l border-b border-lime-400"></div>
     </div>
@@ -176,31 +175,52 @@ const Sidebar = () => {
             {activePageMenus.map(item => (
               <div key={item.id}>
                 {item.id === 'export' && exportingTheComponents ? (
-                  <div className="group relative">
-                    <button
-                      onClick={handleOpenProjectDetailsModal}
-                      className="flex items-center justify-center w-12 h-12 bg-black text-lime-400 hover:bg-lime-400 hover:text-black transition-all duration-200 border-2 border-lime-400 hover:border-pink-500 transform hover:rotate-2 focus:outline-none"
-                    >
-                      <item.icon size={20} />
-                    </button>
-                    <div className="absolute left-16 top-1/2 transform -translate-y-1/2 bg-black text-lime-400 px-3 py-2 text-sm font-black uppercase tracking-wide border-2 border-lime-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-[100]">
-                      {item.label}
-                      <div className="absolute left-0 top-1/2 transform -translate-x-1 -translate-y-1/2 w-2 h-2 bg-lime-400 rotate-45 border-l border-b border-lime-400"></div>
-                    </div>
-                  </div>
+                  <Drawer open={openProjectDetailsModal} onOpenChange={setOpenProjectDetailsModal}>
+                    <DrawerTrigger asChild>
+                      <div className="group relative">
+                        <button className="flex items-center justify-center w-12 h-12 bg-black text-lime-400 hover:bg-lime-400 hover:text-black transition-all duration-200 border-2 border-lime-400 hover:border-pink-500 transform hover:rotate-2 focus:outline-none">
+                          <item.icon size={20} />
+                        </button>
+                        <div className="absolute left-14 top-1/2 transform -translate-y-1/2 bg-black text-lime-400 px-3 py-2 text-sm font-black uppercase tracking-wide border-2 border-lime-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-[100] shadow-lg">
+                          {item.label}
+                          <div className="absolute left-0 top-1/2 transform -translate-x-1 -translate-y-1/2 w-2 h-2 bg-lime-400 rotate-45 border-l border-b border-lime-400"></div>
+                        </div>
+                      </div>
+                    </DrawerTrigger>
+                    <DrawerContent className="bg-black border-lime-400 border-2">
+                      <div className="p-6">
+                        <ProjectDetailsModal
+                          onSave={handleExport}
+                          setProjectDetails={setProjectDetails}
+                          projectDetails={projectDetails}
+                        />
+                      </div>
+                    </DrawerContent>
+                  </Drawer>
                 ) : item.id === 'settings' ? (
-                  <div className="group relative">
-                    <button
-                      onClick={handleOpenChangePageModal}
-                      className="flex items-center justify-center w-12 h-12 bg-black text-lime-400 hover:bg-lime-400 hover:text-black transition-all duration-200 border-2 border-lime-400 hover:border-pink-500 transform hover:rotate-2 focus:outline-none"
-                    >
-                      <item.icon size={20} />
-                    </button>
-                    <div className="absolute left-16 top-1/2 transform -translate-y-1/2 bg-black text-lime-400 px-3 py-2 text-sm font-black uppercase tracking-wide border-2 border-lime-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50">
-                      {item.label}
-                      <div className="absolute left-0 top-1/2 transform -translate-x-1 -translate-y-1/2 w-2 h-2 bg-lime-400 rotate-45 border-l border-b border-lime-400"></div>
-                    </div>
-                  </div>
+                  <Drawer open={isChangingPageModalOpen} onOpenChange={setIsChangingPageModalOpen}>
+                    <DrawerTrigger asChild>
+                      <div className="group relative">
+                        <button className="flex items-center justify-center w-12 h-12 bg-black text-lime-400 hover:bg-lime-400 hover:text-black transition-all duration-200 border-2 border-lime-400 hover:border-pink-500 transform hover:rotate-2 focus:outline-none">
+                          <item.icon size={20} />
+                        </button>
+                        <div className="absolute left-14 top-1/2 transform -translate-y-1/2 bg-black text-lime-400 px-3 py-2 text-sm font-black uppercase tracking-wide border-2 border-lime-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-[100] shadow-lg">
+                          {item.label}
+                          <div className="absolute left-0 top-1/2 transform -translate-x-1 -translate-y-1/2 w-2 h-2 bg-lime-400 rotate-45 border-l border-b border-lime-400"></div>
+                        </div>
+                      </div>
+                    </DrawerTrigger>
+                    <DrawerContent className="bg-black border-lime-400 border-2">
+                      <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="border-r-2 border-lime-400 pr-6">
+                          <ChangePageModal />
+                        </div>
+                        <div>
+                          <ThemeSelector />
+                        </div>
+                      </div>
+                    </DrawerContent>
+                  </Drawer>
                 ) : (
                   <NavItem
                     label={item.label}
@@ -213,32 +233,6 @@ const Sidebar = () => {
           </nav>
         </div>
       </aside>
-
-      {/* Modals */}
-      {isChangingPageModalOpen && (
-        <CommonModal width='max-w-7xl' height='h-screen' marginLeft='lg:ml-24' closeModal={handleOpenChangePageModal}>
-          <div className='grid grid-cols-4'>
-            <div className='border-r-2 self-center'>
-              <ChangePageModal />
-            </div>
-            <div className='border-r-2 self-center'>
-              <ThemeSelector />
-            </div>
-          </div>
-        </CommonModal>
-      )}
-
-      {openProjectDetailsModal && (
-        <SmallModal onClose={handleOpenProjectDetailsModal}>
-          <div className='p-2'>
-            <ProjectDetailsModal
-              onSave={handleExport}
-              setProjectDetails={setProjectDetails}
-              projectDetails={projectDetails}
-            />
-          </div>
-        </SmallModal>
-      )}
     </div>
   );
 };
