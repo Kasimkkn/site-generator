@@ -9,7 +9,7 @@ interface AuthLayoutProps {
 
 const AuthLayout: React.FC<AuthLayoutProps> = ({ children, onBackToLanding }) => {
   return (
-    <div className="min-h-screen bg-black text-white flex">
+    <div className="h-screen bg-black text-white flex">
       {/* Left Side - Scenic Background with Brutalist Overlay */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-lime-400/20 via-pink-500/20 to-orange-500/20 z-10" />
@@ -18,12 +18,12 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children, onBackToLanding }) =>
           alt="Digital Rebellion"
           className="w-full h-full object-cover"
         />
-        
+
         {/* Brutalist Overlays */}
         <div className="absolute top-0 left-0 w-full h-2 bg-lime-400 transform -rotate-1 z-20" />
         <div className="absolute bottom-0 right-0 w-2 h-full bg-pink-500 transform rotate-2 z-20" />
         <div className="absolute top-1/4 right-1/4 w-16 h-16 bg-orange-500 transform rotate-45 z-20" />
-        
+
         <div className="absolute bottom-8 left-8 z-30 text-white">
           <motion.div
             initial={{ opacity: 0, x: -50 }}

@@ -80,7 +80,7 @@ const NavItem = ({ label, icon: Icon, onClick }: NavItemsProps) => (
     >
       <Icon size={20} />
     </button>
-    
+
     {/* Tooltip */}
     <div className="absolute left-16 top-1/2 transform -translate-y-1/2 bg-black text-lime-400 px-3 py-2 text-sm font-black uppercase tracking-wide border-2 border-lime-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50">
       {label}
@@ -98,10 +98,9 @@ const MobileNavbar = ({ sidebarOpen, handleSidebarOpen }: MobileNavbarProps) => 
   <div className="lg:hidden fixed top-0 left-0 right-0 z-20 flex h-16 items-center justify-between bg-black px-4 border-b-2 border-lime-400">
     <div className="flex items-center gap-2 font-black text-xl text-lime-400">
       <RxDashboard className="h-6 w-6" />
-      <span>DASHBOARD</span>
     </div>
-    <button 
-      onClick={handleSidebarOpen} 
+    <button
+      onClick={handleSidebarOpen}
       className="p-2 bg-black text-lime-400 border-2 border-lime-400 hover:bg-lime-400 hover:text-black transition-all duration-200 transform hover:rotate-2"
     >
       {sidebarOpen ? <RxCross2 className="h-6 w-6" /> : <RxHamburgerMenu className="h-6 w-6" />}
@@ -154,26 +153,26 @@ const Sidebar = () => {
   return (
     <div className="relative">
       <MobileNavbar sidebarOpen={sidebarOpen} handleSidebarOpen={handleSidebarOpen} />
-      
+
       {sidebarOpen && (
-        <button 
-          className="fixed inset-0 z-30 bg-black bg-opacity-80 lg:hidden" 
-          onClick={() => setSidebarOpen(false)} 
+        <button
+          className="fixed inset-0 z-30 bg-black bg-opacity-80 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
         />
       )}
 
       <aside className={`fixed inset-y-0 left-0 z-40 w-20 h-screen transform overflow-y-auto 
                 bg-black transition-transform duration-300 border-r-2 border-lime-400 ease-in-out lg:translate-x-0
                 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-        
+
         {/* Header */}
         <div className="hidden lg:flex h-16 items-center justify-center border-b-2 border-lime-400 bg-black">
           <RxDashboard className="h-8 w-8 text-lime-400" />
         </div>
 
         {/* Navigation */}
-        <div className="flex-1 p-2">
-          <nav className="flex flex-col gap-2">
+        <div className="flex justify-center items-center max-h-[calc(100vh_-_4rem)] h-full overlow-y-scroll">
+          <nav className="flex flex-col gap-2 items-center">
             {activePageMenus.map(item => (
               <div key={item.id}>
                 {item.id === 'export' && exportingTheComponents ? (
@@ -184,7 +183,7 @@ const Sidebar = () => {
                     >
                       <item.icon size={20} />
                     </button>
-                    <div className="absolute left-16 top-1/2 transform -translate-y-1/2 bg-black text-lime-400 px-3 py-2 text-sm font-black uppercase tracking-wide border-2 border-lime-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50">
+                    <div className="absolute left-16 top-1/2 transform -translate-y-1/2 bg-black text-lime-400 px-3 py-2 text-sm font-black uppercase tracking-wide border-2 border-lime-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-[100]">
                       {item.label}
                       <div className="absolute left-0 top-1/2 transform -translate-x-1 -translate-y-1/2 w-2 h-2 bg-lime-400 rotate-45 border-l border-b border-lime-400"></div>
                     </div>
@@ -203,10 +202,10 @@ const Sidebar = () => {
                     </div>
                   </div>
                 ) : (
-                  <NavItem 
-                    label={item.label} 
-                    icon={item.icon} 
-                    onClick={() => toggleModal(item.id)} 
+                  <NavItem
+                    label={item.label}
+                    icon={item.icon}
+                    onClick={() => toggleModal(item.id)}
                   />
                 )}
               </div>
@@ -232,10 +231,10 @@ const Sidebar = () => {
       {openProjectDetailsModal && (
         <SmallModal onClose={handleOpenProjectDetailsModal}>
           <div className='p-2'>
-            <ProjectDetailsModal 
-              onSave={handleExport} 
-              setProjectDetails={setProjectDetails} 
-              projectDetails={projectDetails} 
+            <ProjectDetailsModal
+              onSave={handleExport}
+              setProjectDetails={setProjectDetails}
+              projectDetails={projectDetails}
             />
           </div>
         </SmallModal>

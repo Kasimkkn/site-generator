@@ -1,11 +1,11 @@
 
+import BrutalistFeatures from '@/components/brutalist/BrutalistFeatures';
+import BrutalistFooter from '@/components/brutalist/BrutalistFooter';
+import BrutalistHero from '@/components/brutalist/BrutalistHero';
+import BrutalistPricing from '@/components/brutalist/BrutalistPricing';
+import BrutalistTestimonials from '@/components/brutalist/BrutalistTestimonials';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import BrutalistHero from '@/components/brutalist/BrutalistHero';
-import BrutalistFeatures from '@/components/brutalist/BrutalistFeatures';
-import BrutalistTestimonials from '@/components/brutalist/BrutalistTestimonials';
-import BrutalistPricing from '@/components/brutalist/BrutalistPricing';
-import BrutalistFooter from '@/components/brutalist/BrutalistFooter';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const Index = () => {
   return (
     <div className="bg-black text-white overflow-x-hidden">
       {/* Animated Background */}
-      <motion.div 
+      <motion.div
         className="fixed inset-0 opacity-10"
         style={{ y: backgroundY }}
       >
@@ -41,7 +41,7 @@ const Index = () => {
                 DEV<span className="text-pink-500">BUILDER</span>
               </div>
             </motion.div>
-            
+
             <motion.button
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
