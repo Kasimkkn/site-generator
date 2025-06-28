@@ -20,7 +20,7 @@ A cutting-edge, brutalist-inspired website builder that embodies digital rebelli
 ### **Modern SaaS Architecture**
 - **Component-Based Builder** - Modular design system with reusable components
 - **Real-Time Preview** - See your changes instantly
-- **Export Capabilities** - Clean HTML/CSS/JS export functionality
+- **Export Capabilities** - Clean Reactjs/TailwindCss coden export functionality
 - **Template Library** - Brutalist-inspired templates that break conventions
 
 ### **Customizable Theming System**

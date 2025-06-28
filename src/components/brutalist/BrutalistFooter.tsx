@@ -1,6 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Twitter, MessageCircle, Mail } from 'lucide-react';
+import { Github, Mail, MessageCircle, Twitter } from 'lucide-react';
+import React from 'react';
 
 const BrutalistFooter: React.FC = () => {
   const socialLinks = [
@@ -51,7 +51,7 @@ const BrutalistFooter: React.FC = () => {
               <p className="text-xl text-gray-300 leading-relaxed mb-8 max-w-md">
                 DIGITAL REBELLION STARTS HERE. BUILD WEBSITES THAT BREAK EVERY RULE AND MAKE YOUR MARK ON THE WEB.
               </p>
-              
+
               {/* Chaotic social links */}
               <div className="flex space-x-6">
                 {socialLinks.map((social, index) => {
@@ -117,7 +117,7 @@ const BrutalistFooter: React.FC = () => {
                 © 2024 DEVBUILDER. ALL RIGHTS RESERVED. BUILT WITH DIGITAL REBELLION.
               </p>
             </div>
-            
+
             <div className="lg:text-right transform rotate-1">
               <div className="inline-block bg-gradient-to-r from-lime-400 via-pink-500 to-orange-500 text-black px-4 py-2 font-black text-xs uppercase">
                 MADE FOR REBELS

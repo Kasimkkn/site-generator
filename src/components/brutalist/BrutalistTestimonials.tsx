@@ -1,157 +1,206 @@
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Star } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
 
 const BrutalistTestimonials: React.FC = () => {
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+
   const testimonials = [
     {
       name: "ALEX CHAOS",
       role: "DIGITAL REBEL",
+      company: "STARTUP ANARCHY",
       content: "FINALLY! A TOOL THAT DOESN'T FORCE ME INTO BORING TEMPLATES. MY SITES LOOK LIKE PURE DIGITAL ANARCHY.",
       rating: 5,
       color: "lime-400",
       rotation: -3,
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
+      metrics: { conversion: "+340%", traffic: "+890%" }
     },
     {
       name: "SARA DESTROY",
       role: "CREATIVE DIRECTOR",
+      company: "REBEL AGENCY",
       content: "DEVBUILDER BROKE ALL MY PRECONCEPTIONS. NOW I BUILD WEBSITES THAT MAKE PEOPLE STOP AND STARE.",
       rating: 5,
       color: "pink-500",
       rotation: 2,
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face"
+      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face",
+      metrics: { conversion: "+280%", traffic: "+650%" }
     },
     {
       name: "MIKE BRUTAL",
       role: "STARTUP FOUNDER",
+      company: "CHAOS CORP",
       content: "CONVENTIONAL BUILDERS ARE DEAD. THIS IS THE FUTURE. BRUTAL, FAST, PERFECT.",
       rating: 5,
       color: "orange-500",
       rotation: -1,
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
+      metrics: { conversion: "+520%", traffic: "+1200%" }
     }
   ];
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 10000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="py-32 bg-black relative overflow-hidden">
-      {/* Chaotic background grid */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="grid grid-cols-8 gap-4 h-full">
-          {Array.from({ length: 64 }).map((_, i) => (
-            <div key={i} className="border border-lime-400" />
-          ))}
-        </div>
+    <section className="py-40 bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
+      {/* Background Chaos */}
+      <div className="absolute inset-0">
+        <motion.div
+          className="absolute inset-0 opacity-5"
+          animate={{
+            backgroundImage: [
+              "radial-gradient(circle at 20% 80%, rgba(163, 230, 53, 0.3) 0%, transparent 50%)",
+              "radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.3) 0%, transparent 50%)",
+              "radial-gradient(circle at 40% 40%, rgba(249, 115, 22, 0.3) 0%, transparent 50%)"
+            ]
+          }}
+          transition={{ duration: 8, repeat: Infinity }}
+        />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Broken header */}
         <motion.div
           initial={{ opacity: 0, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-20"
+          transition={{ duration: 1 }}
+          className="text-center mb-20"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2">
-              <h2 className="text-6xl md:text-8xl font-black leading-none">
-                <span className="block text-white transform rotate-1">DIGITAL</span>
-                <span className="block text-pink-500 transform -rotate-2 -ml-8">REBELS</span>
-                <span className="block text-lime-400 transform rotate-1 ml-8">SPEAK</span>
-              </h2>
-            </div>
-            <div className="flex items-end">
-              <div className="transform -rotate-3">
-                <div className="bg-orange-500 text-black px-4 py-2 font-black text-sm uppercase mb-4">
-                  100% REAL CHAOS
-                </div>
-                <p className="text-gray-400 text-sm">
-                  UNFILTERED TESTIMONIALS FROM THE FRONT LINES OF WEB REBELLION
-                </p>
-              </div>
-            </div>
-          </div>
+          <h2 className="text-6xl md:text-7xl lg:text-[6rem] font-black leading-none mb-8">
+            <span className="block text-white">DIGITAL</span>
+            <span className="block text-lime-400">REBELS</span>
+            <span className="block text-pink-500">SPEAK</span>
+          </h2>
+          <p className="text-xl text-gray-300">
+            REAL STORIES FROM THE FRONT LINES OF WEB REBELLION
+          </p>
         </motion.div>
 
-        {/* Overlapping testimonials */}
+        {/* Main Testimonial Display */}
         <div className="relative">
-          {testimonials.map((testimonial, index) => (
+          <AnimatePresence mode="wait">
             <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.8, rotate: testimonial.rotation * 2 }}
-              whileInView={{ opacity: 1, scale: 1, rotate: testimonial.rotation }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              whileHover={{ 
-                scale: 1.05, 
-                rotate: testimonial.rotation * -0.5,
-                zIndex: 10
-              }}
-              className={`relative mb-8 lg:mb-16 ${
-                index === 1 ? 'lg:ml-32' : index === 2 ? 'lg:ml-16' : ''
-              }`}
-              style={{ 
-                transform: `rotate(${testimonial.rotation}deg)`,
-                zIndex: 3 - index
-              }}
+              key={activeTestimonial}
+              initial={{ opacity: 0, y: 100, rotate: testimonials[activeTestimonial].rotation * 2 }}
+              animate={{ opacity: 1, y: 0, rotate: testimonials[activeTestimonial].rotation }}
+              exit={{ opacity: 0, y: -100, rotate: testimonials[activeTestimonial].rotation * -2 }}
+              transition={{ duration: 0.8 }}
+              className="relative max-w-4xl mx-auto"
             >
-              <div className={`bg-gray-900 border-4 border-${testimonial.color} p-8 max-w-lg relative`}>
-                {/* Chaotic background element */}
-                <div className={`absolute -top-4 -right-4 w-12 h-12 bg-${testimonial.color} opacity-20 transform rotate-45`} />
-                
+              <div className={`bg-black border-4 border-${testimonials[activeTestimonial].color} p-12 relative overflow-hidden`}>
+                {/* Background Pattern */}
+                <motion.div
+                  className={`absolute top-0 right-0 w-32 h-32 bg-${testimonials[activeTestimonial].color} opacity-10`}
+                  animate={{ rotate: [0, 360] }}
+                  transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                />
+
                 <div className="relative z-10">
-                  {/* Rating stars */}
-                  <div className="flex mb-6">
-                    {Array.from({ length: testimonial.rating }).map((_, i) => (
-                      <Star key={i} className={`w-6 h-6 text-${testimonial.color} fill-current`} />
-                    ))}
-                  </div>
-                  
                   {/* Quote */}
-                  <blockquote className="text-white text-lg font-bold leading-tight mb-6">
-                    "{testimonial.content}"
-                  </blockquote>
-                  
-                  {/* Author info with overlapping image */}
-                  <div className="flex items-center">
-                    <div className="relative">
-                      <img 
-                        src={testimonial.image} 
-                        alt={testimonial.name}
-                        className="w-16 h-16 object-cover transform rotate-6"
+                  <motion.blockquote
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                    className="text-3xl md:text-4xl font-black text-white leading-tight mb-8 text-center"
+                  >
+                    "{testimonials[activeTestimonial].content}"
+                  </motion.blockquote>
+
+                  {/* Author Info */}
+                  <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.5, delay: 0.5 }}
+                      className="relative"
+                    >
+                      <img
+                        src={testimonials[activeTestimonial].image}
+                        alt={testimonials[activeTestimonial].name}
+                        className="w-24 h-24 object-cover border-4 border-white"
                       />
-                      <div className={`absolute -bottom-2 -right-2 w-6 h-6 bg-${testimonial.color} transform rotate-12`} />
+                      <motion.div
+                        className={`absolute -bottom-2 -right-2 w-8 h-8 bg-${testimonials[activeTestimonial].color}`}
+                        animate={{ rotate: [0, 45, 90, 45, 0] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      />
+                    </motion.div>
+
+                    <div className="text-center md:text-left">
+                      <motion.div
+                        initial={{ x: -50, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 0.6 }}
+                        className="text-2xl font-black text-white mb-2"
+                      >
+                        {testimonials[activeTestimonial].name}
+                      </motion.div>
+                      <motion.div
+                        initial={{ x: -50, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 0.7 }}
+                        className="text-gray-400 uppercase tracking-wide font-bold mb-2"
+                      >
+                        {testimonials[activeTestimonial].role}
+                      </motion.div>
+                      <motion.div
+                        initial={{ x: -50, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 0.8 }}
+                        className={`text-${testimonials[activeTestimonial].color} text-sm font-black uppercase`}
+                      >
+                        {testimonials[activeTestimonial].company}
+                      </motion.div>
                     </div>
-                    <div className="ml-6">
-                      <div className="text-white font-black text-lg">{testimonial.name}</div>
-                      <div className="text-gray-400 text-sm uppercase tracking-wide">{testimonial.role}</div>
-                    </div>
+
+                    {/* Metrics */}
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.5, delay: 0.9 }}
+                      className="flex gap-6"
+                    >
+                      <div className="text-center">
+                        <div className={`text-2xl font-black text-${testimonials[activeTestimonial].color}`}>
+                          {testimonials[activeTestimonial].metrics.conversion}
+                        </div>
+                        <div className="text-xs text-gray-400 uppercase">CONVERSION</div>
+                      </div>
+                      <div className="text-center">
+                        <div className={`text-2xl font-black text-${testimonials[activeTestimonial].color}`}>
+                          {testimonials[activeTestimonial].metrics.traffic}
+                        </div>
+                        <div className="text-xs text-gray-400 uppercase">TRAFFIC</div>
+                      </div>
+                    </motion.div>
                   </div>
                 </div>
-
-                {/* Overlapping accent line */}
-                <div className={`absolute bottom-0 left-0 w-full h-1 bg-${testimonial.color} transform -rotate-1`} />
               </div>
             </motion.div>
-          ))}
-        </div>
+          </AnimatePresence>
 
-        {/* Chaotic call-to-action */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-20 text-center"
-        >
-          <div className="transform -rotate-1">
-            <div className="text-4xl font-black text-white mb-4">
-              JOIN THE <span className="text-lime-400">REBELLION</span>
-            </div>
-            <div className="text-lg text-gray-400">
-              BECOME THE NEXT SUCCESS STORY IN DIGITAL CHAOS
-            </div>
+          {/* Testimonial Navigation */}
+          <div className="flex justify-center gap-4 mt-12">
+            {testimonials.map((_, index) => (
+              <motion.button
+                key={index}
+                onClick={() => setActiveTestimonial(index)}
+                className={`w-4 h-4 ${activeTestimonial === index
+                  ? `bg-${testimonials[index].color}`
+                  : 'bg-gray-600'
+                  } transition-all duration-300`}
+                whileHover={{ scale: 1.5 }}
+                whileTap={{ scale: 0.8 }}
+              />
+            ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
