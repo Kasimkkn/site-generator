@@ -1,275 +1,152 @@
 
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Eye, EyeOff, Mail, Lock, User, ArrowRight } from 'lucide-react';
-import { toast } from '@/hooks/use-toast';
-import SocialLoginButtons from '@/components/auth/SocialLoginButtons';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 interface RegisterFormProps {
   onViewChange: (view: 'login' | 'register' | 'forgot' | 'reset') => void;
 }
 
-const RegisterForm = ({ onViewChange }: RegisterFormProps) => {
+const RegisterForm: React.FC<RegisterFormProps> = ({ onViewChange }) => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    name: '',
     email: '',
     password: '',
     confirmPassword: ''
   });
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [acceptTerms, setAcceptTerms] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const validateForm = () => {
-    const newErrors: Record<string, string> = {};
-
-    if (!formData.firstName.trim()) {
-      newErrors.firstName = 'First name is required';
-    }
-
-    if (!formData.lastName.trim()) {
-      newErrors.lastName = 'Last name is required';
-    }
-
-    if (!formData.email) {
-      newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
-    }
-
-    if (!formData.password) {
-      newErrors.password = 'Password is required';
-    } else if (formData.password.length < 8) {
-      newErrors.password = 'Password must be at least 8 characters';
-    } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(formData.password)) {
-      newErrors.password = 'Password must contain uppercase, lowercase, and number';
-    }
-
-    if (!formData.confirmPassword) {
-      newErrors.confirmPassword = 'Please confirm your password';
-    } else if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = 'Passwords do not match';
-    }
-
-    if (!acceptTerms) {
-      newErrors.terms = 'You must accept the terms and conditions';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-    if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: '' }));
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Registration logic would go here
+    console.log('Registration attempt:', formData);
+  };
 
-    if (!validateForm()) return;
-
-    setIsLoading(true);
-
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-
-      toast({
-        title: "Account Created!",
-        description: "Please check your email to verify your account.",
-      });
-
-      console.log('Registration attempt:', formData);
-
-      // Redirect to login after successful registration
-      onViewChange('login');
-    } catch (error) {
-      toast({
-        title: "Registration Failed",
-        description: "Something went wrong. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
-    }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
   };
 
   return (
-    <div className="space-y-6">
-      <div className="text-center">
-        <h2 className="text-3xl font-bold text-white mb-2">Create Account</h2>
-        <p className="text-gray-300">Join Folio Generator today</p>
+    <motion.div
+      initial={{ opacity: 0, x: 50 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -50 }}
+      className="w-full max-w-md"
+    >
+      {/* Chaotic header elements */}
+      <div className="relative mb-8">
+        <div className="absolute -top-4 -left-4 w-16 h-2 bg-lime-400 transform rotate-12" />
+        <div className="absolute -top-2 -right-2 w-8 h-8 bg-pink-500 rounded-full" />
+        
+        <motion.h1 
+          className="text-4xl font-black text-white mb-2 transform -rotate-1"
+          initial={{ y: -20 }}
+          animate={{ y: 0 }}
+        >
+          JOIN THE
+        </motion.h1>
+        <motion.h2 
+          className="text-5xl font-black text-lime-400 transform rotate-1"
+          initial={{ y: 20 }}
+          animate={{ y: 0 }}
+        >
+          REBELLION
+        </motion.h2>
+        
+        <div className="absolute -bottom-2 right-0 w-24 h-1 bg-orange-500 transform -rotate-2" />
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="firstName" className="text-gray-200">First Name</Label>
-            <div className="relative">
-              <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-              <Input
-                id="firstName"
-                type="text"
-                placeholder="First name"
-                value={formData.firstName}
-                onChange={(e) => handleInputChange('firstName', e.target.value)}
-                className="pl-10 bg-gray-800/50 border-gray-600 text-white placeholder-gray-400 focus:border-purple-500"
-              />
-            </div>
-            {errors.firstName && (
-              <p className="text-sm text-red-400">{errors.firstName}</p>
-            )}
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="lastName" className="text-gray-200">Last Name</Label>
-            <Input
-              id="lastName"
-              type="text"
-              placeholder="Last name"
-              value={formData.lastName}
-              onChange={(e) => handleInputChange('lastName', e.target.value)}
-              className="bg-gray-800/50 border-gray-600 text-white placeholder-gray-400 focus:border-purple-500"
-            />
-            {errors.lastName && (
-              <p className="text-sm text-red-400">{errors.lastName}</p>
-            )}
-          </div>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Name Field */}
+        <div className="relative">
+          <div className="absolute -top-1 -left-1 w-full h-full bg-lime-400 transform rotate-1" />
+          <input
+            type="text"
+            name="name"
+            placeholder="FULL NAME"
+            value={formData.name}
+            onChange={handleChange}
+            className="relative w-full px-6 py-4 bg-black text-white border-4 border-lime-400 font-black uppercase tracking-wide placeholder-gray-500 focus:outline-none focus:border-pink-500 focus:bg-gray-900 transition-all duration-200"
+            required
+          />
+          <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-pink-500 transform rotate-45" />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="email" className="text-gray-200">Email</Label>
-          <div className="relative">
-            <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-            <Input
-              id="email"
-              type="email"
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={(e) => handleInputChange('email', e.target.value)}
-              className="pl-10 bg-gray-800/50 border-gray-600 text-white placeholder-gray-400 focus:border-purple-500"
-            />
-          </div>
-          {errors.email && (
-            <p className="text-sm text-red-400">{errors.email}</p>
-          )}
+        {/* Email Field */}
+        <div className="relative">
+          <div className="absolute -top-1 -left-1 w-full h-full bg-pink-500 transform -rotate-1" />
+          <input
+            type="email"
+            name="email"
+            placeholder="EMAIL ADDRESS"
+            value={formData.email}
+            onChange={handleChange}
+            className="relative w-full px-6 py-4 bg-black text-white border-4 border-pink-500 font-black uppercase tracking-wide placeholder-gray-500 focus:outline-none focus:border-lime-400 focus:bg-gray-900 transition-all duration-200"
+            required
+          />
+          <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-lime-400 transform rotate-45" />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="password" className="text-gray-200">Password</Label>
-          <div className="relative">
-            <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-            <Input
-              id="password"
-              type={showPassword ? 'text' : 'password'}
-              placeholder="Create a password"
-              value={formData.password}
-              onChange={(e) => handleInputChange('password', e.target.value)}
-              className="pl-10 pr-10 bg-gray-800/50 border-gray-600 text-white placeholder-gray-400 focus:border-purple-500"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-3 text-gray-400 hover:text-gray-300"
-            >
-              {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-            </button>
-          </div>
-          {errors.password && (
-            <p className="text-sm text-red-400">{errors.password}</p>
-          )}
+        {/* Password Field */}
+        <div className="relative">
+          <div className="absolute -top-1 -left-1 w-full h-full bg-orange-500 transform rotate-1" />
+          <input
+            type="password"
+            name="password"
+            placeholder="PASSWORD"
+            value={formData.password}
+            onChange={handleChange}
+            className="relative w-full px-6 py-4 bg-black text-white border-4 border-orange-500 font-black uppercase tracking-wide placeholder-gray-500 focus:outline-none focus:border-lime-400 focus:bg-gray-900 transition-all duration-200"
+            required
+          />
+          <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-pink-500 transform rotate-45" />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="confirmPassword" className="text-gray-200">Confirm Password</Label>
-          <div className="relative">
-            <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-            <Input
-              id="confirmPassword"
-              type={showConfirmPassword ? 'text' : 'password'}
-              placeholder="Confirm your password"
-              value={formData.confirmPassword}
-              onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
-              className="pl-10 pr-10 bg-gray-800/50 border-gray-600 text-white placeholder-gray-400 focus:border-purple-500"
-            />
-            <button
-              type="button"
-              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              className="absolute right-3 top-3 text-gray-400 hover:text-gray-300"
-            >
-              {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-            </button>
-          </div>
-          {errors.confirmPassword && (
-            <p className="text-sm text-red-400">{errors.confirmPassword}</p>
-          )}
+        {/* Confirm Password Field */}
+        <div className="relative">
+          <div className="absolute -top-1 -left-1 w-full h-full bg-lime-400 transform -rotate-1" />
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="CONFIRM PASSWORD"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            className="relative w-full px-6 py-4 bg-black text-white border-4 border-lime-400 font-black uppercase tracking-wide placeholder-gray-500 focus:outline-none focus:border-pink-500 focus:bg-gray-900 transition-all duration-200"
+            required
+          />
+          <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-orange-500 transform rotate-45" />
         </div>
 
-        <div className="space-y-2">
-          <label className="flex items-start space-x-3">
-            <input
-              type="checkbox"
-              checked={acceptTerms}
-              onChange={(e) => setAcceptTerms(e.target.checked)}
-              className="mt-1 rounded border-gray-600 bg-gray-800 text-purple-600 focus:ring-purple-500"
-            />
-            <span className="text-sm text-gray-300">
-              I agree to the{' '}
-              <a href="#" className="text-purple-400 hover:text-purple-300">
-                Terms & Conditions
-              </a>{' '}
-              and{' '}
-              <a href="#" className="text-purple-400 hover:text-purple-300">
-                Privacy Policy
-              </a>
-            </span>
-          </label>
-          {errors.terms && (
-            <p className="text-sm text-red-400">{errors.terms}</p>
-          )}
-        </div>
-
-        <Button
+        {/* Submit Button */}
+        <motion.button
           type="submit"
-          disabled={isLoading}
-          className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-medium py-3 rounded-lg transition-all duration-200 transform hover:scale-[1.02]"
+          className="relative w-full py-4 bg-lime-400 text-black font-black text-xl uppercase tracking-wide transform hover:scale-105 hover:rotate-1 transition-all duration-200 border-4 border-black hover:border-pink-500 hover:bg-pink-500 hover:text-white"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
-          {isLoading ? (
-            <div className="flex items-center space-x-2">
-              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-              <span>Creating account...</span>
-            </div>
-          ) : (
-            <div className="flex items-center space-x-2">
-              <span>Create Account</span>
-              <ArrowRight className="h-4 w-4" />
-            </div>
-          )}
-        </Button>
+          <div className="absolute inset-0 bg-black transform translate-x-1 translate-y-1 -z-10" />
+          CREATE ACCOUNT
+        </motion.button>
       </form>
 
-      <SocialLoginButtons />
-
-      <div className="text-center">
-        <p className="text-gray-300">
-          Already have an account?{' '}
-          <button
-            onClick={() => onViewChange('login')}
-            className="text-purple-400 hover:text-purple-300 font-medium transition-colors"
-          >
-            Sign in
-          </button>
+      {/* Navigation */}
+      <div className="mt-8 text-center">
+        <p className="text-gray-400 font-bold mb-4 uppercase tracking-wide">
+          ALREADY A REBEL?
         </p>
+        <button
+          onClick={() => onViewChange('login')}
+          className="text-lime-400 hover:text-pink-500 font-black uppercase tracking-wide transition-colors duration-200 transform hover:rotate-1"
+        >
+          → BACK TO LOGIN
+        </button>
       </div>
-    </div>
+
+      {/* Decorative elements */}
+      <div className="absolute top-1/2 -right-8 w-2 h-32 bg-gradient-to-b from-lime-400 to-pink-500 transform rotate-12 opacity-20" />
+      <div className="absolute bottom-1/4 -left-6 w-6 h-6 bg-orange-500 transform rotate-45 opacity-30" />
+    </motion.div>
   );
 };
 

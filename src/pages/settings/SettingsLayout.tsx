@@ -5,9 +5,9 @@ import Sidebar from '@/components/settingsPanelComponents/SideBar';
 
 const SettingsLayout: React.FC = () => {
     return (
-        <main className='flex h-screen w-screen overflow-x-hidden'>
+        <main className='flex h-screen w-screen overflow-x-hidden bg-black'>
             <Sidebar />
-            <div className="lg:ml-44 text-xl w-full bg-background relative">
+            <div className="lg:ml-20 text-xl w-full bg-black text-lime-400 relative">
                 <Outlet />
             </div>
         </main>
