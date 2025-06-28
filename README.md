@@ -1,7 +1,7 @@
 
 # DevBuilder - Brutalist SaaS Website Builder
 
-A cutting-edge, brutalist-inspired website builder that embodies digital rebellion and creative freedom. Built with React, TypeScript, and modern web technologies.
+A cutting-edge, brutalist-inspired website builder that embodies digital rebellion and creative freedom. Built with React, TypeScript, and modern web technologies featuring a comprehensive authentication system and customizable theming.
 
 ## 🚀 Features
 
@@ -11,17 +11,30 @@ A cutting-edge, brutalist-inspired website builder that embodies digital rebelli
 - **Motion-First Interactions** - Framer Motion animations throughout
 - **No-Code Freedom** - Build without boundaries using drag-and-drop tools
 
+### **Authentication & Security**
+- **Secure Auth System** - Comprehensive login/register flow with auth guards
+- **Protected Routes** - Settings and admin areas protected by authentication
+- **Local Storage Integration** - Persistent authentication state
+- **Demo Credentials** - kasimkkn@gmail.com / Kasim@123
+
 ### **Modern SaaS Architecture**
 - **Component-Based Builder** - Modular design system with reusable components
 - **Real-Time Preview** - See your changes instantly
 - **Export Capabilities** - Clean HTML/CSS/JS export functionality
 - **Template Library** - Brutalist-inspired templates that break conventions
 
+### **Customizable Theming System**
+- **Dynamic Theme Engine** - Real-time theme switching with brutalist presets
+- **Color Customization** - Full control over primary, accent, and secondary colors
+- **Preset Themes** - Rebellion, Neon Chaos, and Digital Punk themes
+- **Export-Ready Themes** - Theme data ready for backend integration
+
 ### **Developer Experience**
 - **TypeScript** - Full type safety throughout the application
 - **Modern React** - Hooks, Context API, and latest React patterns
 - **Tailwind CSS** - Utility-first styling with custom brutalist extensions
 - **Framer Motion** - Smooth animations and micro-interactions
+- **Protected Routing** - Auth guards for secure areas
 
 ## 🎨 Design Philosophy
 
@@ -42,14 +55,15 @@ DevBuilder embraces a **brutalist web design** approach:
 - **State Management**: React Context API
 - **Icons**: Lucide React
 - **Charts**: Recharts
-- **Authentication**: Custom auth components
-- **Routing**: React Router DOM
+- **Authentication**: Custom auth system with localStorage
+- **Routing**: React Router DOM with protected routes
+- **Theme System**: Dynamic theming with CSS custom properties
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 - Node.js 18+ 
-- npm or yarn or bun
+- npm, yarn, or bun
 
 ### Installation
 
@@ -73,7 +87,7 @@ bun install
 npm run dev
 # or
 yarn dev
-# or
+# or  
 bun dev
 ```
 
@@ -88,16 +102,42 @@ src/
 │   ├── brutalist/       # Brutalist-specific components
 │   ├── ui/              # Base UI components (shadcn/ui)
 │   ├── auth/            # Authentication components
+│   │   ├── AuthLayout.tsx     # Brutalist auth layout
+│   │   ├── AuthGuard.tsx      # Route protection
+│   │   └── BrutalistLoginForm.tsx # Styled login form
 │   ├── hero/            # Hero section variants
 │   ├── navbar/          # Navigation components
-│   └── ...              # Other component categories
+│   └── ThemeSelector.tsx # Theme customization
 ├── pages/               # Application pages
+│   ├── Index.tsx        # Landing page
+│   ├── Auth.tsx         # Authentication page
+│   └── settings/        # Protected settings pages
 ├── context/             # React Context providers
+│   ├── LayoutContext.tsx
+│   └── changeTheme.tsx  # Theme management
 ├── hooks/               # Custom React hooks
 ├── lib/                 # Utility functions
 ├── types/               # TypeScript type definitions
 └── styles/              # Global styles and configurations
 ```
+
+## 🔐 Authentication System
+
+### **Login System**
+- Demo credentials: `kasimkkn@gmail.com` / `Kasim@123`
+- Persistent authentication via localStorage
+- Brutalist-styled auth forms with chaos-driven design
+
+### **Protected Routes**
+- `/settings` - Protected by AuthGuard
+- Automatic redirect to `/auth` for unauthenticated users
+- Seamless navigation after login
+
+### **Auth Components**
+- `AuthLayout` - Brutalist authentication layout
+- `AuthGuard` - Route protection component
+- `BrutalistLoginForm` - Styled login form
+- Integration with existing RegisterForm, ForgotPasswordForm
 
 ## 🎯 Key Components
 
@@ -108,31 +148,35 @@ src/
 - `BrutalistPricing` - Avant-garde pricing tables
 - `BrutalistFooter` - Industrial footer design
 
+### **Authentication System**
+- `AuthLayout` - Brutalist auth page layout
+- `BrutalistLoginForm` - Chaos-driven login form
+- `AuthGuard` - Route protection with automatic redirects
+
 ### **Website Builder**
 - Component library with multiple variants (Hero, Navbar, Footer, etc.)
 - Real-time preview system
 - Content management with form builders
 - Settings panel for component customization
 
-### **Authentication System**
-- Modern login/register forms
-- Password reset functionality
-- Social login integration
-- Responsive auth layouts
+### **Theme System**
+- `ThemeSelector` - Visual theme customization interface
+- Dynamic CSS custom properties
+- Preset brutalist themes
+- Real-time theme application
 
-## 🎨 Styling Approach
+## 🎨 Styling & Theming
 
-### **Tailwind Configuration**
-Custom brutalist extensions including:
-- High contrast color palette
-- Custom animation keyframes
-- Experimental spacing scales
-- Typography utilities for raw, industrial fonts
+### **Theme System**
+- **Dynamic Themes** - Switch between Rebellion, Neon Chaos, Digital Punk
+- **Custom Colors** - Full control over primary, accent, secondary colors
+- **CSS Custom Properties** - Seamless theme integration
+- **Export Ready** - Theme data prepared for backend integration
 
-### **Color System**
-- **Primary**: Electric lime (#00FF41) and deep black (#000000)
-- **Secondary**: Neon pink (#FF006E) and industrial gray (#1A1A1A)  
-- **Accent**: Warning orange (#FF8500) and pure white (#FFFFFF)
+### **Brutalist Color Palettes**
+- **Rebellion**: Electric lime (#00FF41), Neon pink (#FF006E), Warning orange (#FF8500)
+- **Neon Chaos**: Pink primary, Lime text, Orange accents
+- **Digital Punk**: Orange primary, Lime accents, Pink secondary
 
 ### **Animation Library**
 - Accordion animations for expandable content
@@ -152,17 +196,27 @@ npm run lint         # Run ESLint
 npm run type-check   # Run TypeScript checks
 ```
 
+### **Authentication Flow**
+1. User visits protected route (`/settings`)
+2. AuthGuard checks localStorage for `isAuthenticated`
+3. Redirects to `/auth` if not authenticated
+4. Login form validates credentials
+5. Sets authentication state in localStorage
+6. Redirects to intended route
+
 ### **Adding New Components**
 1. Create component in appropriate category folder
 2. Add to component index file
 3. Update TypeScript types if needed
 4. Add to settings panel if configurable
+5. Apply brutalist theming using theme context
 
 ### **Extending the Builder**
 1. Define component data types in `src/types/global.ts`
 2. Create component variants in respective folders
 3. Add to component map in `src/components/index.tsx`
 4. Create settings panel configuration
+5. Integrate with theme system
 
 ## 🌐 Deployment
 
@@ -179,6 +233,34 @@ npm run build
 ```
 
 The built files will be in the `dist` directory.
+
+### **Environment Setup**
+No environment variables required for basic functionality. Authentication currently uses demo credentials stored in component logic.
+
+## 🔐 Security Notes
+
+- Current authentication is demo-only with hardcoded credentials
+- localStorage used for authentication state (suitable for demo/development)
+- Protected routes implemented with client-side guards
+- For production: integrate with proper backend authentication system
+
+## 🎉 Theme Export Integration
+
+The theme system is designed for easy backend integration:
+
+```javascript
+// Theme data structure for export
+const themeData = {
+  primary: "#00FF41",
+  background: "#000000", 
+  text: "#ffffff",
+  accent: "#FF006E",
+  secondary: "#FF8500"
+};
+
+// Ready for API integration
+localStorage.getItem("devbuilder-theme");
+```
 
 ## 🤝 Contributing
 
@@ -203,4 +285,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 **Built with digital rebellion in mind. Break the rules. Build the future.**
 
-🚀 **DevBuilder** - Where chaos meets creativity.
+🚀 **DevBuilder** - Where chaos meets creativity, now with secure authentication and infinite customization.
+
+**Demo Access**: kasimkkn@gmail.com / Kasim@123
