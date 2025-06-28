@@ -1,13 +1,12 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Twitter, Discord, Mail } from 'lucide-react';
+import { Github, Twitter, MessageCircle, Mail } from 'lucide-react';
 
 const BrutalistFooter: React.FC = () => {
   const socialLinks = [
     { icon: Github, label: "GITHUB", color: "lime-400" },
     { icon: Twitter, label: "TWITTER", color: "pink-500" },
-    { icon: Discord, label: "DISCORD", color: "orange-500" },
+    { icon: MessageCircle, label: "DISCORD", color: "orange-500" },
     { icon: Mail, label: "EMAIL", color: "lime-400" }
   ];
 
