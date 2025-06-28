@@ -253,7 +253,7 @@ const BrutalistPricing = ({ onGetStarted }) => {
                   "Unlimited Website Creation",
                   "All Brutal Templates",
                   "Mobile Responsive Exports",
-                  "Clean HTML/CSS Code",
+                  "Clean ReactJs/TailwindCss Code",
                   "SSL Certificates Included",
                   "Community Support"
                 ].map((feature, index) => (

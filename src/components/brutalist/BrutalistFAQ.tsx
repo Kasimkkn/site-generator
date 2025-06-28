@@ -33,7 +33,7 @@ const BrutalistFAQ = () => {
         },
         {
             question: "CAN I EXPORT MY CHAOTIC CREATION?",
-            answer: "YOUR CODE, YOUR RULES. EXPORT CLEAN HTML, CSS, AND JS TO HOST ANYWHERE. NO VENDOR LOCK-IN, NO CORPORATE CHAINS.",
+            answer: "YOUR CODE, YOUR RULES. EXPORT CLEAN REACTJS/TAILWINDCSS TO HOST ANYWHERE. NO VENDOR LOCK-IN, NO CORPORATE CHAINS.",
             color: "orange-500"
         }
     ];
