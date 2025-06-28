@@ -108,13 +108,13 @@ const CardsForm: React.FC<CardsFormProps> = ({
                         updateArrayContent(section, `${section}CardsData`, -1, getInitialCardData(section))
                         scrollToMessage(cardsData.length);
                     }}
-                    className="self-end flex items-center px-3 py-2 text-sm font-medium text-background bg-primary rounded-md "
+                    className="self-end flex items-center px-3 py-2 text-sm font-medium text-black bg-lime-400 rounded-md "
                 >
                     <FiPlusCircle className="h-4 w-4 mr-2" />
                     Add {section.charAt(0).toUpperCase().concat(section.slice(1))}
                 </button>
                 {cardsData.map((card, index) => (
-                    <div id={`card-${index}`} key={card.id || index} className="border rounded-lg p-4 space-y-3">
+                    <div id={`card-${index}`} key={card.id || index} className="space-y-3">
                         <div className="flex justify-between items-center">
                             <h3 className="text-lg font-medium">{section.charAt(0).toUpperCase().concat(section.slice(1))} {index + 1}</h3>
                             <button

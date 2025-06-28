@@ -75,13 +75,13 @@ export const NavbarForm = ({ content, updateContent, handleImageChange, imagePre
                         console.log('content', content.navbar.menus.length);
                         scrollToMessage(content.navbar.menus.length)
                     }}
-                    className="self-end flex items-center px-3 py-2 text-sm font-medium text-background bg-primary rounded-md"
+                    className="self-end flex items-center px-3 py-2 text-sm font-medium text-black bg-lime-400 rounded-md"
                 >
                     <FiPlusCircle className="h-4 w-4 mr-2" />
                     Add Menu
                 </button>
                 {content.navbar.menus.map((card, index) => (
-                    <div id={`menu-${index}`} key={index + 1} className="border rounded-lg p-4 space-y-3">
+                    <div id={`menu-${index}`} key={index + 1} className="space-y-3">
                         <div className="flex justify-between items-center">
                             <h3 className="text-lg font-medium">Menu {index + 1}</h3>
                             <button

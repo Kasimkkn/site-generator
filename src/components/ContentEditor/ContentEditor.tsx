@@ -21,7 +21,6 @@ interface NestedUpdateParams {
 
 const ContentEditor: React.FC<ContentEditorProps> = ({ isOpen, onClose, section }) => {
     const { content, setContent, activePage } = useContext(LayoutContext);
-
     const activePageData = content.find((pageData: any) => pageData.page.toLowerCase() === activePage.toLowerCase());
     const activePageContent: ContentData = activePageData ? activePageData.content : {};
     const [tempContent, setTempContent] = useState<ContentData>(activePageContent);
@@ -76,7 +75,6 @@ const ContentEditor: React.FC<ContentEditorProps> = ({ isOpen, onClose, section 
     };
 
     const updateArrayContent = (section: string, arrayField: string, index: number, value: any): void => {
-        console.log('updateArrayContent', section, arrayField, index, value);
         setTempContent(prevContent => {
             const existingArray = prevContent[section]?.[arrayField] || [];
             const newArray = [...existingArray];
@@ -168,7 +166,6 @@ const ContentEditor: React.FC<ContentEditorProps> = ({ isOpen, onClose, section 
     };
 
     const onSave = (): void => {
-        console.log("tempContent", tempContent);
         setContent((prevContent: any[]) =>
             prevContent.map((pageData: any) =>
                 pageData.page.toLowerCase() === activePage.toLowerCase()
@@ -181,14 +178,14 @@ const ContentEditor: React.FC<ContentEditorProps> = ({ isOpen, onClose, section 
 
     return (
         <>
-            <div className="flex justify-between items-center border-b p-4">
-                <h2 className="text-xl font-semibold">Edit {section} Content</h2>
+            <div className="flex justify-between items-center">
+                <h2 className="text-xl font-semibold text-lime-400">Edit {section} Content</h2>
                 <button onClick={onClose} className="p-1">
                     <FiX className="h-6 w-6" />
                 </button>
             </div>
 
-            <div className="py-4 max-h-[80vh] overflow-y-auto scrollbar-hide">
+            <div className="py-4 pb-24 max-h-[80vh] overflow-y-auto scrollbar-hide">
                 <GeneralForm
                     content={tempContent}
                     deleteArrayItem={deleteArrayItem}
@@ -210,10 +207,10 @@ const ContentEditor: React.FC<ContentEditorProps> = ({ isOpen, onClose, section 
             </div>
 
             <div className="px-6 py-4 border-t flex justify-end space-x-3">
-                <button onClick={onClose} className="px-4 py-2 bg-text text-background rounded-md">
+                <button onClick={onClose} className="px-4 py-2 border-2 border-lime-400 text-lime-400 rounded-md">
                     Cancel
                 </button>
-                <button onClick={onSave} className="px-4 py-2 bg-primary text-background rounded-md">
+                <button onClick={onSave} className="px-4 py-2 bg-lime-400 text-white rounded-md">
                     Save Changes
                 </button>
             </div>

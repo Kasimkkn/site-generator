@@ -8,8 +8,9 @@ interface ReviewCardFieldsProps {
     index: number;
     updateArrayContent: UpdateArrayContentFunction;
     handleImageChange: HandleImageChangeFunction;
+    accent?: string
 }
-export const ReviewCardFields = ({ card, index, updateArrayContent, handleImageChange }: ReviewCardFieldsProps) => (
+export const ReviewCardFields = ({ card, index, updateArrayContent, handleImageChange, accent }: ReviewCardFieldsProps) => (
     <div className="grid grid-cols-12 gap-2">
         <div className="col-span-4">
             <ImageUpload
@@ -18,6 +19,7 @@ export const ReviewCardFields = ({ card, index, updateArrayContent, handleImageC
                 onChange={(e) => handleImageChange(e, `reviewsCardsData[${index}].avatar`)}
                 preview={card.avatar}
                 height={"h-full"}
+                accent={accent}
             />
         </div>
         <div className="col-span-8">
@@ -30,6 +32,7 @@ export const ReviewCardFields = ({ card, index, updateArrayContent, handleImageC
                     index,
                     { ...card, name: e.target.value }
                 )}
+                accent={accent}
             />
             <InputField
                 label="Role"
@@ -40,6 +43,7 @@ export const ReviewCardFields = ({ card, index, updateArrayContent, handleImageC
                     index,
                     { ...card, title: e.target.value }
                 )}
+                accent={accent}
             />
             <InputField
                 label="Review"
@@ -51,6 +55,7 @@ export const ReviewCardFields = ({ card, index, updateArrayContent, handleImageC
                     index,
                     { ...card, review: e.target.value }
                 )}
+                accent={accent}
             />
         </div>
     </div>

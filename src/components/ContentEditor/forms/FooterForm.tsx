@@ -35,7 +35,7 @@ export const FooterForm = ({ content, updateContent, handleImageChange, imagePre
                     label="Footer Logo"
                     onChange={(e) => handleImageChange(e, 'logo')}
                     preview={imagePreview}
-                    height="h-[130px]"
+                    height="h-[120px]"
                 />
                 <InputField
                     label="Footer Description"
@@ -50,7 +50,7 @@ export const FooterForm = ({ content, updateContent, handleImageChange, imagePre
                 onChange={(e) => updateContent('footer', 'companyName', e.target.value)}
             />
             <div className="space-y-2">
-                <span className="block text-sm font-medium text-text">Footer Links</span>
+                <span className="block text-sm font-medium text-black">Footer Links</span>
                 <button
                     onClick={() => {
                         updateArrayContent('footer', 'linksData', -1, {
@@ -59,7 +59,7 @@ export const FooterForm = ({ content, updateContent, handleImageChange, imagePre
                         })
                         scrollToMessage(content.footer.linksData.length);
                     }}
-                    className="flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
+                    className="flex items-center px-3 py-2 text-sm font-medium text-black bg-lime-600 rounded-md"
                 >
                     <FiPlusCircle className="h-4 w-4 mr-2" />
                     Add Link Section

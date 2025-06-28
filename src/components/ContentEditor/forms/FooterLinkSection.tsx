@@ -51,7 +51,7 @@ export const FooterLinkSection = ({ linkSection, index, updateArrayContent, dele
 
     return (
         <>
-            <div id={`footer-links-${index}`} className="border rounded-lg p-4 space-y-3">
+            <div id={`footer-links-${index}`} className="border-lime-400 border rounded-lg p-4 space-y-3">
                 <div className="flex justify-between items-center">
                     <div className="flex gap-2 items-center">
                         <InputField
@@ -75,7 +75,7 @@ export const FooterLinkSection = ({ linkSection, index, updateArrayContent, dele
                                 );
                                 scrollToMessage(linkSection.links.length);
                             }}
-                            className="flex mt-6 items-center px-3 py-2 text-sm font-medium text-primary border border-primary rounded-md "
+                            className="flex mt-6 items-center px-3 py-2 text-sm font-medium text-lime-400 border border-lime-400 rounded-md "
                         >
                             <FiPlusCircle className="h-4 w-4 " />
                         </button>

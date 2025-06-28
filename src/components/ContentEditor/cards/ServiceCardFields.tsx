@@ -6,9 +6,10 @@ interface ServiceCardFieldsProps {
     card: ServiceCard
     index: number
     updateArrayContent: UpdateArrayContentFunction
+    accent?: string
 }
-const ServiceCardFields = ({ card, index, updateArrayContent }: ServiceCardFieldsProps) => (
-    <>
+const ServiceCardFields = ({ card, index, updateArrayContent, accent }: ServiceCardFieldsProps) => (
+    <div className='space-y-4'>
         <InputField
             label="Title"
             value={card.title}
@@ -18,6 +19,7 @@ const ServiceCardFields = ({ card, index, updateArrayContent }: ServiceCardField
                 index,
                 { ...card, title: e.target.value }
             )}
+            accent={accent}
         />
         <InputField
             label="Description"
@@ -29,8 +31,9 @@ const ServiceCardFields = ({ card, index, updateArrayContent }: ServiceCardField
                 index,
                 { ...card, description: e.target.value }
             )}
+            accent={accent}
         />
-    </>
+    </div>
 );
 
 export { ServiceCardFields };

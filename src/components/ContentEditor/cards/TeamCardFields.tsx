@@ -8,9 +8,10 @@ interface TeamCardFieldsProps {
     index: number;
     updateArrayContent: UpdateArrayContentFunction;
     handleImageChange: HandleImageChangeFunction;
+    accent?: string
 }
-export const TeamCardFields = ({ card, index, updateArrayContent, handleImageChange }: TeamCardFieldsProps) => (
-    <div className="grid grid-cols-2 gap-3">
+export const TeamCardFields = ({ card, index, updateArrayContent, handleImageChange, accent }: TeamCardFieldsProps) => (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <ImageUpload
             id={String(card.id)}
             label="Avatar"
@@ -18,8 +19,9 @@ export const TeamCardFields = ({ card, index, updateArrayContent, handleImageCha
                 handleImageChange(e, `teamsCardsData[${index}].avatar`)
             }}
             preview={card.avatar}
+            accent={accent}
         />
-        <div className="flex flex-col gap-1">
+        <div className="space-y-3">
             <InputField
                 label="Name"
                 value={card.name}
@@ -29,6 +31,7 @@ export const TeamCardFields = ({ card, index, updateArrayContent, handleImageCha
                     index,
                     { ...card, name: e.target.value }
                 )}
+                accent={accent}
             />
             <InputField
                 label="Role"
@@ -39,6 +42,7 @@ export const TeamCardFields = ({ card, index, updateArrayContent, handleImageCha
                     index,
                     { ...card, title: e.target.value }
                 )}
+                accent={accent}
             />
             <InputField
                 label="Description"
@@ -50,6 +54,7 @@ export const TeamCardFields = ({ card, index, updateArrayContent, handleImageCha
                     index,
                     { ...card, desc: e.target.value }
                 )}
+                accent={accent}
             />
             <InputField
                 label="LinkedIn URL"
@@ -60,6 +65,7 @@ export const TeamCardFields = ({ card, index, updateArrayContent, handleImageCha
                     index,
                     { ...card, linkedin: e.target.value }
                 )}
+                accent={accent}
             />
             <InputField
                 label="Twitter URL"
@@ -70,6 +76,7 @@ export const TeamCardFields = ({ card, index, updateArrayContent, handleImageCha
                     index,
                     { ...card, twitter: e.target.value }
                 )}
+                accent={accent}
             />
             <InputField
                 label="GitHub URL"
@@ -80,6 +87,7 @@ export const TeamCardFields = ({ card, index, updateArrayContent, handleImageCha
                     index,
                     { ...card, github: e.target.value }
                 )}
+                accent={accent}
             />
         </div>
     </div>

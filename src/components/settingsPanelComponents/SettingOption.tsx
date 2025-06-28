@@ -13,8 +13,9 @@ interface SettingOptionProps {
         components: React.ReactNode[];
     }[];
     onChange: (value: string) => void;
+    accent?: string
 }
-const SettingOption = ({ label, value, options, onChange }: SettingOptionProps) => {
+const SettingOption = ({ label, value, options, onChange, accent }: SettingOptionProps) => {
     const { toggleEditModal } = useContext(LayoutContext);
     const [activeTabOpen, setActiveTabOpen] = useState(null);
     const [isContentEditorOpen, setIsContentEditorOpen] = useState(false);
@@ -40,7 +41,7 @@ const SettingOption = ({ label, value, options, onChange }: SettingOptionProps) 
                     <div className='flex justify-between items-center'>
                         <label className="font-medium text-text">{label}</label>
                         <button
-                            className='flex items-center gap-1 text-background bg-primary p-1 rounded-md text-md justify-center'
+                            className='flex items-center gap-1 text-black bg-lime-400 px-3 py-2 rounded-md text-md justify-center'
                             onClick={() => toggeEditor(label.toLowerCase())}
                         >
                             <CiEdit />
@@ -52,9 +53,9 @@ const SettingOption = ({ label, value, options, onChange }: SettingOptionProps) 
                                 key={option.label}
                                 role='none'
                                 onClick={() => onChange(option.label)}
-                                className={`cursor-pointer transition-all duration-200 border rounded-lg overflow-hidden ${value === option.label
-                                    ? 'border-primary ring-2 ring-primary'
-                                    : 'border-gray-200 hover:border-primary'
+                                className={`cursor-pointer transition-all duration-200 rounded-lg overflow-hidden ${value === option.label
+                                    ? 'border border-lime-400 ring-2 ring-primary'
+                                    : 'border-none'
                                     }`}
                             >
                                 <div className="p-2 bg-gray-50 border-b">

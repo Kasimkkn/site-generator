@@ -5,10 +5,10 @@ interface ContactCardFieldsProps {
     card: ContactCard,
     index: number,
     updateArrayContent: UpdateArrayContentFunction
+    accent?: string
 }
-export const ContactCardFields = ({ card, index, updateArrayContent }: ContactCardFieldsProps) => (
-    <>
-
+export const ContactCardFields = ({ card, index, updateArrayContent, accent }: ContactCardFieldsProps) => (
+    <div className="space-y-4">
         <InputField
             label="title"
             value={card.title}
@@ -18,6 +18,7 @@ export const ContactCardFields = ({ card, index, updateArrayContent }: ContactCa
                 index,
                 { ...card, title: e.target.value }
             )}
+            accent={accent}
         />
         <InputField
             label="contact"
@@ -28,6 +29,7 @@ export const ContactCardFields = ({ card, index, updateArrayContent }: ContactCa
                 index,
                 { ...card, contact: e.target.value }
             )}
+            accent={accent}
         />
         <InputField
             label="icon"
@@ -39,7 +41,8 @@ export const ContactCardFields = ({ card, index, updateArrayContent }: ContactCa
                 index,
                 { ...card, icon: e.target.value }
             )}
+            accent={accent}
         />
 
-    </>
+    </div>
 );

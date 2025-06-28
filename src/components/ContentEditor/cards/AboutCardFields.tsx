@@ -5,10 +5,11 @@ interface AboutCardFieldsProps {
     card: AboutCard,
     index: number,
     updateArrayContent: UpdateArrayContentFunction
+    accent?: string
 }
 
-const AboutCardFields = ({ card, index, updateArrayContent }: AboutCardFieldsProps) => (
-    <>
+const AboutCardFields = ({ card, index, updateArrayContent, accent }: AboutCardFieldsProps) => (
+    <div className="space-y-4">
         <InputField
             label="Title (Number)"
             value={card.title}
@@ -18,6 +19,7 @@ const AboutCardFields = ({ card, index, updateArrayContent }: AboutCardFieldsPro
                 index,
                 { ...card, title: e.target.value }
             )}
+            accent={accent}
         />
         <InputField
             label="Text"
@@ -28,8 +30,9 @@ const AboutCardFields = ({ card, index, updateArrayContent }: AboutCardFieldsPro
                 index,
                 { ...card, text: e.target.value }
             )}
+            accent={accent}
         />
-    </>
+    </div>
 );
 
 
