@@ -14,6 +14,7 @@ import Hero2 from '@/components/hero/Hero2';
 import Hero3 from '@/components/hero/Hero3';
 import Navbar from '@/components/navbar/Navbar';
 import Navbar1 from '@/components/navbar/Navbar1';
+import Navbar3 from '@/components/navbar/Navbar3';
 import Projects from '@/components/projects/Projects';
 import Projects1 from '@/components/projects/Projects1';
 import Reviews from '@/components/reviews/Reviews';
@@ -23,14 +24,17 @@ import Service1 from '@/components/service/Service1';
 import Service2 from '@/components/service/Service2';
 import Teams from '@/components/teams/Teams';
 import PageHeader from '@/components/pageheader/PageHeader';
+import Hero4 from './hero/Hero4';
 
 export const componentMap: { [key: string]: React.ComponentType<any> } = {
     Navbar,
     Navbar1,
+    Navbar3,
     Hero,
     Hero1,
     Hero2,
     Hero3,
+    Hero4,
     AboutUs,
     AboutOne,
     PageHeader,

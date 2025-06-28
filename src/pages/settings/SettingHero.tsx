@@ -5,6 +5,8 @@ import Hero from '@/components/hero/Hero'
 import Hero1 from '@/components/hero/Hero1'
 import Hero2 from '@/components/hero/Hero2'
 import Hero3 from '@/components/hero/Hero3'
+import Hero4 from '@/components/hero/Hero4'
+
 
 const SettingHero = () => {
     const { layout, handleChange, content, activePage } = useContext(LayoutContext);
@@ -23,7 +25,12 @@ const SettingHero = () => {
             label: 'Hero2', components: [<Hero2 key="hero-two" data={activePageContent.hero} />]
         }, {
             label: 'Hero3', components: [<Hero3 key="hero-three" data={activePageContent.hero} />]
-        }]
+        },
+        {
+            label: 'Hero4', components: [<Hero4 key="hero-four" data={activePageContent.hero} />]
+        }
+        ]
+
     }
 
     return (
