@@ -31,12 +31,12 @@ const BrutalistHero: React.FC<BrutalistHeroProps> = ({ onGetStarted }) => {
             >
               {/* Overlapping Typography */}
               <div className="relative">
-                <h1 className="text-6xl md:text-8xl lg:text-9xl font-black leading-none">
+                <h1 className="text-5xl md:text-8xl lg:text-9xl font-black leading-none">
                   <span className="block text-white transform -rotate-2">BUILD</span>
                   <span className="block text-lime-400 transform rotate-1 -mt-4">BREAK</span>
                   <span className="block text-pink-500 transform -rotate-1 -mt-4">REBEL</span>
                 </h1>
-                
+
                 {/* Overlapping accent text */}
                 <div className="absolute top-1/2 right-0 transform translate-x-1/4 -translate-y-1/2 rotate-12">
                   <span className="text-orange-500 text-2xl font-black opacity-80">WEBSITES</span>
@@ -47,7 +47,7 @@ const BrutalistHero: React.FC<BrutalistHeroProps> = ({ onGetStarted }) => {
               <div className="mt-12 grid grid-cols-3 gap-4">
                 <div className="col-span-2">
                   <p className="text-xl text-gray-300 leading-relaxed">
-                    ESCAPE THE ORDINARY. CREATE WEBSITES THAT SCREAM DIGITAL REBELLION. 
+                    ESCAPE THE ORDINARY. CREATE WEBSITES THAT SCREAM DIGITAL REBELLION.
                     NO RULES. NO LIMITS. PURE CREATIVE CHAOS.
                   </p>
                 </div>
@@ -119,12 +119,11 @@ const BrutalistHero: React.FC<BrutalistHeroProps> = ({ onGetStarted }) => {
                 <div className="bg-black p-6 border-2 border-lime-400">
                   <div className="grid grid-cols-4 gap-2 mb-4">
                     {Array.from({ length: 16 }).map((_, i) => (
-                      <div 
-                        key={i} 
-                        className={`h-8 ${
-                          i % 3 === 0 ? 'bg-lime-400' : 
+                      <div
+                        key={i}
+                        className={`h-8 ${i % 3 === 0 ? 'bg-lime-400' :
                           i % 3 === 1 ? 'bg-pink-500' : 'bg-orange-500'
-                        }`}
+                          }`}
                       />
                     ))}
                   </div>
@@ -140,7 +139,7 @@ const BrutalistHero: React.FC<BrutalistHeroProps> = ({ onGetStarted }) => {
               <div className="absolute -top-4 -right-4 bg-pink-500 p-4 transform rotate-12">
                 <Grid3X3 className="w-8 h-8 text-white" />
               </div>
-              
+
               <div className="absolute -bottom-4 -left-4 bg-orange-500 p-3 transform -rotate-12">
                 <span className="text-white font-black text-xs">BRUTAL</span>
               </div>
