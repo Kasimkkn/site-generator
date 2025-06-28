@@ -83,7 +83,6 @@ const Navbar1: React.FC<HeroProps> = ({ data }) => {
                 </div>
             </nav>
         </header>
-
     );
 }
 

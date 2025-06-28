@@ -1,4 +1,3 @@
-
 import { useContext, useEffect, useState } from 'react';
 import { CiAlignBottom, CiExport } from 'react-icons/ci';
 import { GoPeople } from 'react-icons/go';
@@ -14,6 +13,7 @@ import ChangePageModal from '@/components/settingsPanelComponents/ChangePageModa
 import ProjectDetailsModal from '@/components/settingsPanelComponents/ProjectDetailsModal';
 import toast from 'react-hot-toast';
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 export const NAV_ITEMS = [{
   id: 'navbar',
@@ -72,20 +72,24 @@ interface NavItemsProps {
 }
 
 const NavItem = ({ label, icon: Icon, onClick }: NavItemsProps) => (
-  <div className="group relative">
-    <button
-      onClick={onClick}
-      className="flex items-center justify-center w-12 h-12 bg-black text-lime-400 hover:bg-lime-400 hover:text-black transition-all duration-200 border-2 border-lime-400 hover:border-pink-500 transform hover:rotate-2 focus:outline-none"
+  <Tooltip>
+    <TooltipTrigger asChild>
+      <button
+        onClick={onClick}
+        className="flex items-center justify-center w-12 h-12 bg-black text-lime-400 hover:bg-lime-400 hover:text-black transition-all duration-200 border-2 border-lime-400 hover:border-pink-500 transform hover:rotate-2 focus:outline-none relative"
+      >
+        <Icon size={20} />
+      </button>
+    </TooltipTrigger>
+    <TooltipContent
+      side="right"
+      className="bg-black text-lime-400 border-2 border-lime-400 font-black uppercase tracking-wide shadow-lg"
+      sideOffset={20}
+      style={{ zIndex: 10000 }}
     >
-      <Icon size={20} />
-    </button>
-
-    {/* Fixed Tooltip */}
-    <div className="absolute left-14 top-1/2 transform -translate-y-1/2 bg-black text-lime-400 px-3 py-2 text-sm font-black uppercase tracking-wide border-2 border-lime-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-[100] shadow-lg">
       {label}
-      <div className="absolute left-0 top-1/2 transform -translate-x-1 -translate-y-1/2 w-2 h-2 bg-lime-400 rotate-45 border-l border-b border-lime-400"></div>
-    </div>
-  </div>
+    </TooltipContent>
+  </Tooltip>
 );
 
 interface MobileNavbarProps {
@@ -94,7 +98,7 @@ interface MobileNavbarProps {
 }
 
 const MobileNavbar = ({ sidebarOpen, handleSidebarOpen }: MobileNavbarProps) => (
-  <div className="lg:hidden fixed top-0 left-0 right-0 z-20 flex h-16 items-center justify-between bg-black px-4 border-b-2 border-lime-400">
+  <div className="lg:hidden fixed top-0 left-0 right-0 z-30 flex h-16 items-center justify-between bg-black px-4 border-b-2 border-lime-400">
     <div className="flex items-center gap-2 font-black text-xl text-lime-400">
       <RxDashboard className="h-6 w-6" />
     </div>
@@ -160,7 +164,7 @@ const Sidebar = () => {
         />
       )}
 
-      <aside className={`fixed inset-y-0 left-0 z-40 w-20 h-screen transform overflow-y-auto 
+      <aside className={`fixed inset-y-0 left-0 z-50 w-20 h-screen transform 
                 bg-black transition-transform duration-300 border-r-2 border-lime-400 ease-in-out lg:translate-x-0
                 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
 
@@ -169,68 +173,61 @@ const Sidebar = () => {
           <RxDashboard className="h-8 w-8 text-lime-400" />
         </div>
 
-        {/* Navigation */}
-        <div className="flex justify-center items-center max-h-[calc(100vh_-_4rem)] h-full overlow-y-scroll">
-          <nav className="flex flex-col gap-2 items-center">
-            {activePageMenus.map(item => (
-              <div key={item.id}>
-                {item.id === 'export' && exportingTheComponents ? (
-                  <Drawer open={openProjectDetailsModal} onOpenChange={setOpenProjectDetailsModal}>
-                    <DrawerTrigger asChild>
-                      <div className="group relative">
-                        <button className="flex items-center justify-center w-12 h-12 bg-black text-lime-400 hover:bg-lime-400 hover:text-black transition-all duration-200 border-2 border-lime-400 hover:border-pink-500 transform hover:rotate-2 focus:outline-none">
-                          <item.icon size={20} />
-                        </button>
-                        <div className="absolute left-14 top-1/2 transform -translate-y-1/2 bg-black text-lime-400 px-3 py-2 text-sm font-black uppercase tracking-wide border-2 border-lime-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-[100] shadow-lg">
-                          {item.label}
-                          <div className="absolute left-0 top-1/2 transform -translate-x-1 -translate-y-1/2 w-2 h-2 bg-lime-400 rotate-45 border-l border-b border-lime-400"></div>
-                        </div>
-                      </div>
-                    </DrawerTrigger>
-                    <DrawerContent className="bg-black border-lime-400 border-2">
-                      <div className="p-6">
-                        <ProjectDetailsModal
-                          onSave={handleExport}
-                          setProjectDetails={setProjectDetails}
-                          projectDetails={projectDetails}
+        <div className="flex justify-center items-start pt-4 md:h-[calc(100vh-4rem)]">
+          <TooltipProvider delayDuration={300}>
+            <nav className="flex flex-col gap-2 items-center max-h-full overflow-y-auto px-2">
+              {activePageMenus.map(item => (
+                <div key={item.id} className="relative">
+                  {item.id === 'export' && exportingTheComponents ? (
+                    <Drawer open={openProjectDetailsModal} onOpenChange={setOpenProjectDetailsModal}>
+                      <DrawerTrigger asChild>
+                        <NavItem
+                          label={item.label}
+                          icon={item.icon}
+                          onClick={() => { }}
                         />
-                      </div>
-                    </DrawerContent>
-                  </Drawer>
-                ) : item.id === 'settings' ? (
-                  <Drawer open={isChangingPageModalOpen} onOpenChange={setIsChangingPageModalOpen}>
-                    <DrawerTrigger asChild>
-                      <div className="group relative">
-                        <button className="flex items-center justify-center w-12 h-12 bg-black text-lime-400 hover:bg-lime-400 hover:text-black transition-all duration-200 border-2 border-lime-400 hover:border-pink-500 transform hover:rotate-2 focus:outline-none">
-                          <item.icon size={20} />
-                        </button>
-                        <div className="absolute left-14 top-1/2 transform -translate-y-1/2 bg-black text-lime-400 px-3 py-2 text-sm font-black uppercase tracking-wide border-2 border-lime-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-[100] shadow-lg">
-                          {item.label}
-                          <div className="absolute left-0 top-1/2 transform -translate-x-1 -translate-y-1/2 w-2 h-2 bg-lime-400 rotate-45 border-l border-b border-lime-400"></div>
+                      </DrawerTrigger>
+                      <DrawerContent className="bg-black border-lime-400 border-2">
+                        <div className="p-6">
+                          <ProjectDetailsModal
+                            onSave={handleExport}
+                            setProjectDetails={setProjectDetails}
+                            projectDetails={projectDetails}
+                          />
                         </div>
-                      </div>
-                    </DrawerTrigger>
-                    <DrawerContent className="bg-black border-lime-400 border-2">
-                      <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="border-r-2 border-lime-400 pr-6">
-                          <ChangePageModal />
+                      </DrawerContent>
+                    </Drawer>
+                  ) : item.id === 'settings' ? (
+                    <Drawer open={isChangingPageModalOpen} onOpenChange={setIsChangingPageModalOpen}>
+                      <DrawerTrigger asChild>
+                        <NavItem
+                          label={item.label}
+                          icon={item.icon}
+                          onClick={() => { }}
+                        />
+                      </DrawerTrigger>
+                      <DrawerContent className="bg-black border-lime-400 border-2">
+                        <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div className="border-r-2 border-lime-400 pr-6">
+                            <ChangePageModal />
+                          </div>
+                          <div>
+                            <ThemeSelector />
+                          </div>
                         </div>
-                        <div>
-                          <ThemeSelector />
-                        </div>
-                      </div>
-                    </DrawerContent>
-                  </Drawer>
-                ) : (
-                  <NavItem
-                    label={item.label}
-                    icon={item.icon}
-                    onClick={() => toggleModal(item.id)}
-                  />
-                )}
-              </div>
-            ))}
-          </nav>
+                      </DrawerContent>
+                    </Drawer>
+                  ) : (
+                    <NavItem
+                      label={item.label}
+                      icon={item.icon}
+                      onClick={() => toggleModal(item.id)}
+                    />
+                  )}
+                </div>
+              ))}
+            </nav>
+          </TooltipProvider>
         </div>
       </aside>
     </div>

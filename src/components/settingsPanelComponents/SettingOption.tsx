@@ -46,7 +46,7 @@ const SettingOption = ({ label, value, options, onChange }: SettingOptionProps) 
                             <CiEdit />
                             Edit</button>
                     </div>
-                    <div className="grid grid-cols-1 gap-4 max-h-[90vh] overflow-y-auto scollbar-hide">
+                    <div className="grid grid-cols-1 gap-4 max-h-[80vh] overflow-y-auto scollbar-hide pb-28">
                         {options.map((option) => (
                             <div
                                 key={option.label}

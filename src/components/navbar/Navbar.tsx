@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
 
 import { NavbarData } from '@/types/global';
 
@@ -8,230 +7,78 @@ interface HeroProps {
 }
 
 const Navbar: React.FC<HeroProps> = ({ data }) => {
-    const [state, setState] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
-    const navRef = useRef(null);
-    const [activeItem, setActiveItem] = useState(null);
-
-    useEffect(() => {
-        // Close menu when clicking outside
-        document.onclick = (e) => {
-            const target = e.target as HTMLElement;
-            if (!target.closest(".menu-btn") && !target.closest(".nav-menu")) {
-                setState(false);
-            }
-        };
-
-        // Detect scroll for styling changes
-        const handleScroll = () => {
-            if (window.scrollY > 50) {
-                setScrolled(true);
-            } else {
-                setScrolled(false);
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-            document.onclick = null;
-        };
-    }, []);
-
-    if (!data?.logo) return null;
-
     return (
-        <header className={`w-full transition-all duration-300 ${scrolled ? 'py-2' : 'py-4'}`}>
-            <div className={`md:hidden ${state ? "mx-2 pb-5" : "hidden"}`}>
-                <Brand data={data} setState={setState} state={state} />
+        <header>
+            <div className="bg-gray-100 border-b border-gray-200">
+                <div className="px-4 mx-auto sm:px-6 lg:px-8">
+                    <nav className="relative flex items-center justify-between h-16 lg:h-20">
+                        <div className="hidden lg:flex lg:items-center lg:space-x-10">
+                            {data?.menus?.map((item, idx) => (
+                                <a key={idx + 1} href={item.path} title="" className="text-base font-medium text-black">{item.title}</a>
+                            )
+                            )}
+                        </div>
+
+                        <div className="lg:absolute lg:-translate-x-1/2 lg:inset-y-5 lg:left-1/2">
+                            <div className="flex-shrink-0">
+                                <a href="/" title="" className="flex">
+                                    <img className="w-auto h-8 lg:h-10" src={data.logo} alt="logo" />
+                                </a>
+                            </div>
+                        </div>
+
+                        <button type="button" className="flex items-center justify-center ml-auto text-white bg-black rounded-full w-9 h-9 lg:hidden">
+                            <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                        </button>
+
+                        <button type="button" className="inline-flex p-2 ml-5 text-black transition-all duration-200 rounded-md lg:hidden focus:bg-gray-100 hover:bg-gray-100">
+                            <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+                            </svg>
+                        </button>
+
+                        <div className="hidden lg:flex lg:items-center lg:space-x-10">
+                            <a href="/#" title="" className="text-base font-medium text-black"> Sign up </a>
+
+                            <a href="/#" title="" className="text-base font-medium text-black"> Sign in </a>
+
+                            <a href="/#" title="" className="flex items-center justify-center w-10 h-10 text-white bg-black rounded-full">
+                                <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </nav>
+                </div>
             </div>
-            <nav
-                ref={navRef}
-                className={`md:text-sm ${state
-                    ? "absolute top-0 z-50 inset-x-0 bg-background shadow-xl rounded-b-2xl border-b border-primary/20 md:shadow-none md:border-none md:mx-0 md:mt-0 md:relative md:bg-transparent"
-                    : ""
-                    } ${scrolled ? "shadow-md bg-background/80 backdrop-blur-lg" : ""}`}
-            >
-                <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="gap-x-14 items-center max-w-screen-xl mx-auto px-4 md:flex md:px-8"
-                >
-                    <Brand data={{ logo: data.logo }} setState={setState} state={state} />
 
-                    <AnimatePresence>
-                        {(state || window.innerWidth >= 768) && (
-                            <motion.div
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: "auto" }}
-                                exit={{ opacity: 0, height: 0 }}
-                                transition={{ duration: 0.3 }}
-                                className={`flex-1 items-center mt-8 md:mt-0 md:flex nav-menu`}
-                            >
-                                <ul className="flex-1 justify-center items-center space-y-6 md:flex md:space-x-8 md:space-y-0">
-                                    {data?.menus?.map((item, idx) => {
-                                        return (
-                                            <motion.li
-                                                key={idx + 1}
-                                                custom={idx}
-                                                variants={{
-                                                    hidden: { opacity: 0, y: 20 },
-                                                    visible: {
-                                                        opacity: 1,
-                                                        y: 0,
-                                                        transition: {
-                                                            delay: idx * 0.1,
-                                                            duration: 0.5,
-                                                            ease: [0.6, 0.01, -0.05, 0.95]
-                                                        }
-                                                    },
-                                                    exit: { opacity: 0, y: -20, transition: { duration: 0.3 } }
-                                                }}
-                                                initial="hidden"
-                                                animate="visible"
-                                                exit="exit"
-                                                className="relative"
-                                                onMouseEnter={() => setActiveItem(idx)}
-                                                onMouseLeave={() => setActiveItem(null)}
-                                            >
-                                                <a
-                                                    href={item.path}
-                                                    className="block py-2 px-4 text-text text-xl hover:text-primary transition-colors duration-300 relative"
-                                                >
-                                                    {item.title}
-                                                    {activeItem === idx && (
-                                                        <motion.span
-                                                            layoutId="underline"
-                                                            className="absolute bottom-0 left-0 w-full h-0.5 bg-primary rounded-full"
-                                                            initial={{ width: 0 }}
-                                                            animate={{ width: "100%" }}
-                                                            transition={{ duration: 0.3 }}
-                                                        />
-                                                    )}
-                                                </a>
-                                            </motion.li>
-                                        );
-                                    })}
-                                </ul>
+            <nav className="py-4 bg-white lg:hidden">
+                <div className="px-4 mx-auto sm:px-6 lg:px-8">
+                    <div className="flex items-center justify-between">
+                        <p className="text-sm font-semibold tracking-widest text-gray-400 uppercase">Menu</p>
 
-                                <motion.div
-                                    custom={data?.menus?.length}
-                                    variants={{
-                                        hidden: { opacity: 0, y: 20 },
-                                        visible: {
-                                            opacity: 1,
-                                            y: 0,
-                                            transition: {
-                                                delay: 0.1,
-                                                duration: 0.5,
-                                                ease: [0.6, 0.01, -0.05, 0.95]
-                                            }
-                                        },
-                                        exit: { opacity: 0, y: -20, transition: { duration: 0.3 } }
-                                    }} initial="hidden"
-                                    animate="visible"
-                                    exit="exit"
-                                    className="items-center justify-end space-y-6 md:flex md:space-y-0 md:space-x-4 md:mt-0"
-                                >
-                                    <motion.button
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        className="flex items-center justify-center gap-x-1 py-2 px-5 text-background font-medium bg-primary rounded-full hover:bg-primary/90 transition-colors duration-300 shadow-lg shadow-primary/20 md:inline-flex"
-                                    >
-                                        {data?.buttonText}
-                                        <motion.svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
-                                            className="w-5 h-5"
-                                            animate={{ x: [0, 5, 0] }}
-                                            transition={{ repeat: Infinity, repeatDelay: 3, duration: 1 }}
-                                        >
-                                            <path
-                                                fillRule="evenodd"
-                                                d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-                                                clipRule="evenodd"
-                                            />
-                                        </motion.svg>
-                                    </motion.button>
-                                </motion.div>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-                </motion.div>
+                        <button type="button" className="inline-flex p-2 text-black transition-all duration-200 rounded-md focus:bg-gray-100 hover:bg-gray-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div className="mt-6">
+                        <div className="flex flex-col space-y-2">
+                            {
+                                data?.menus?.map((item, idx) => (
+                                    <a key={idx + 1} href={item.path} title="" className="py-2 text-base font-medium text-black transition-all duration-200 focus:text-primary">{item.title}</a>
+                                ))}
+                        </div>
+                    </div>
+                </div>
             </nav>
         </header>
-    );
+    )
 };
-
-interface BrandProps {
-    data: NavbarData
-    setState: (state: boolean) => void;
-    state: boolean;
-}
-const Brand = ({ data, setState, state }: BrandProps) => (
-    <div className="flex items-center justify-between py-4 md:py-0 md:block">
-        <motion.a
-            href="/"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-        >
-            <motion.img
-                initial={{ opacity: 0, rotate: -10 }}
-                animate={{ opacity: 1, rotate: 0 }}
-                transition={{ duration: 0.5 }}
-                src={data.logo}
-                alt="Brand Logo"
-                className='w-16 h-16 object-cover rounded-lg'
-            />
-        </motion.a>
-        <div className="md:hidden">
-            <motion.button
-                className="menu-btn text-text p-2 rounded-full bg-background/50 backdrop-blur-sm border border-gray-200"
-                onClick={() => setState(!state)}
-                whileTap={{ scale: 0.9 }}
-            >
-                {state ? (
-                    <motion.svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        initial={{ rotate: 0 }}
-                        animate={{ rotate: 180 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        <path
-                            fillRule="evenodd"
-                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                            clipRule="evenodd"
-                        />
-                    </motion.svg>
-                ) : (
-                    <motion.svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-6 h-6"
-                        initial={{ rotate: 180 }}
-                        animate={{ rotate: 0 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                        />
-                    </motion.svg>
-                )}
-            </motion.button>
-        </div>
-    </div>
-);
 
 
 export default Navbar;

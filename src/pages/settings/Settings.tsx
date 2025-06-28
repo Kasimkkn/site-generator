@@ -1,5 +1,5 @@
 
-import React, { useContext } from 'react';
+import { Drawer, DrawerContent } from '@/components/ui/drawer';
 import { LayoutContext } from '@/context/LayoutContext';
 import About from '@/pages/About';
 import Contact from '@/pages/Contact';
@@ -15,7 +15,7 @@ import SettingProjects from '@/pages/settings/SettingProjects';
 import SettingReviews from '@/pages/settings/SettingReviews';
 import SettingService from '@/pages/settings/SettingService';
 import SettingTeam from '@/pages/settings/SettingTeam';
-import { Drawer, DrawerContent } from '@/components/ui/drawer';
+import React, { useContext } from 'react';
 
 const Settings: React.FC = () => {
     const { modal, toggleModal, openDifferentPages } = useContext(LayoutContext);
@@ -26,7 +26,7 @@ const Settings: React.FC = () => {
             {openDifferentPages.about && <About />}
             {openDifferentPages.service && <Service />}
             {openDifferentPages.contact && <Contact />}
-            
+
             {/* Modern Bottom Drawer Modals */}
             <Drawer open={modal?.navbar || false} onOpenChange={() => toggleModal('navbar')}>
                 <DrawerContent className="bg-black border-lime-400 border-2">

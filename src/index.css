@@ -110,3 +110,17 @@
 .scollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* Force tooltip portal to highest z-index */
+[data-radix-popper-content-wrapper] {
+  z-index: 9999 !important;
+}
+
+[data-radix-tooltip-content] {
+  z-index: 9999 !important;
+}
+
+/* Ensure tooltip trigger doesn't interfere */
+[data-radix-tooltip-trigger] {
+  position: relative;
+}
