@@ -1,72 +1,109 @@
+
+import React from 'react';
+import { motion } from 'framer-motion';
 import { ProjectData } from '@/types/global';
-import { BsArrowRight } from 'react-icons/bs';
-import { FaExternalLinkAlt } from 'react-icons/fa';
 
-
-interface ProjectProps {
-    data: ProjectData
+interface ProjectsProps {
+    data?: ProjectData;
 }
 
-const Project1: React.FC<ProjectProps> = ({ data }) => {
+const Projects1: React.FC<ProjectsProps> = ({ data }) => {
     return (
-        <section
-            className="py-24 md:py-32 relative overflow-hidden"
-            id="projects"
-        >
-            <div
-                className="absolute inset-0 h-full w-full bg-white bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] z-[-1]"
-            ></div>
+        <section className="py-20 bg-gray-50">
+            <div className="container mx-auto px-4">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-16"
+                >
+                    <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
+                        Our Work
+                    </span>
+                    <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                        {data?.projectTitle}
+                    </h2>
+                    <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                        {data?.projectDescription}
+                    </p>
+                </motion.div>
 
-            <div className="container max-w-6xl mx-auto px-4 xl:px-0 ">
-                <div className={`mb-12  transition-all duration-700`}>
-                    <h2 className="text-3xl font-extrabold leading-tight text-text mb-1">{data?.projectTitle}</h2>
-                    <p className="section-description mx-auto">{data?.projectDescription}</p>
-                </div>
-
-                {/* Projects Grid */}
-                <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-                    {data?.projectsCardsData.map((project, index) => (
-                        <div
-                            key={project.id}
-                            className={`project-card group h-full flex flex-col overflow-hidden transition-all duration-700`}
-                            style={{ transitionDelay: `${(index % 3) * 200}ms` }}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {data?.projectsCardsData?.map((project, index) => (
+                        <motion.div
+                            key={project.id || index}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: index * 0.1 }}
+                            viewport={{ once: true }}
+                            className="group"
                         >
-                            <div className="relative h-56 md:h-64 overflow-hidden">
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80"></div>
+                            <div className="relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500">
+                                <div className="relative overflow-hidden">
+                                    <img 
+                                        src={project.image} 
+                                        alt={project.title}
+                                        className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    
+                                    <motion.a
+                                        href={project.link}
+                                        whileHover={{ scale: 1.1 }}
+                                        whileTap={{ scale: 0.9 }}
+                                        className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300"
+                                    >
+                                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                        </svg>
+                                    </motion.a>
+                                </div>
+                                
+                                <div className="p-6">
+                                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors duration-300">
+                                        {project.title}
+                                    </h3>
+                                    <p className="text-gray-600 mb-4">
+                                        {project.description}
+                                    </p>
+                                    
+                                    <div className="flex items-center justify-between">
+                                        <motion.a
+                                            href={project.link}
+                                            whileHover={{ x: 5 }}
+                                            className="flex items-center text-primary font-semibold hover:text-primary/80 transition-colors duration-300"
+                                        >
+                                            View Project
+                                            <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                            </svg>
+                                        </motion.a>
+                                    </div>
+                                </div>
                             </div>
-
-                            <div className="p-6 flex flex-col flex-grow">
-                                <h3 className="mb-3 text-xl font-bold">{project.title}</h3>
-                                <p className="mb-5 text-muted-foreground line-clamp-3 flex-grow">{project.description}</p>
-                                <a
-                                    href={project.link}
-                                    className="group inline-flex items-center text-sm font-medium text-primary mt-auto"
-                                >
-                                    View project
-                                    <FaExternalLinkAlt className="ml-1 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                                </a>
-                            </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
 
-                <div className="mt-16 text-center">
-                    <a
-                        href="/"
-                        className="group inline-flex items-center rounded-full border border-primary bg-transparent px-7 py-3.5 text-sm font-medium text-primary transition-all duration-300 hover:bg-primary hover:text-white"
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    viewport={{ once: true }}
+                    className="text-center mt-16"
+                >
+                    <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="px-8 py-4 bg-gradient-to-r from-primary to-purple-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
                     >
-                        View all projects
-                        <BsArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                    </a>
-                </div>
+                        View All Projects
+                    </motion.button>
+                </motion.div>
             </div>
         </section>
     );
 };
 
-export default Project1;
+export default Projects1;
