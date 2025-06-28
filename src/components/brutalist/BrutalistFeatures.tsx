@@ -138,29 +138,12 @@ const BrutalistFeatures: React.FC = () => {
                 initial={{ opacity: 0, y: 100, rotate: feature.rotation * 2 }}
                 whileInView={{ opacity: 1, y: 0, rotate: feature.rotation }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
-                whileHover={{
-                  scale: 1.05,
-                  rotate: 0,
-                  y: -10,
-                  transition: { duration: 0.3 }
-                }}
                 className="group relative"
               >
                 <div className={`relative bg-black border-4 border-${feature.color} p-8 h-full overflow-hidden`}>
-                  {/* Animated Background Element */}
-                  <motion.div
-                    className={`absolute top-0 right-0 w-20 h-20 bg-${feature.color} opacity-20`}
-                    animate={{
-                      rotate: [45, 225, 45],
-                      scale: [1, 1.2, 1]
-                    }}
-                    transition={{ duration: 4, repeat: Infinity }}
-                  />
 
                   <div className="relative z-10">
                     <motion.div
-                      whileHover={{ rotate: [0, 360] }}
-                      transition={{ duration: 0.6 }}
                     >
                       <Icon className={`w-16 h-16 text-${feature.color} mb-6`} />
                     </motion.div>
@@ -193,45 +176,6 @@ const BrutalistFeatures: React.FC = () => {
             );
           })}
         </div>
-
-        {/* Enhanced Stats */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="mt-32 grid grid-cols-2 lg:grid-cols-4 gap-8"
-        >
-          {[
-            { number: "99%", label: "FASTER THAN WORDPRESS", rotation: -2, color: "lime-400" },
-            { number: "0", label: "CODING REQUIRED", rotation: 3, color: "pink-500" },
-            { number: "∞", label: "DESIGN POSSIBILITIES", rotation: -1, color: "orange-500" },
-            { number: "24/7", label: "REBELLION SUPPORT", rotation: 2, color: "lime-400" }
-          ].map((stat, index) => (
-            <motion.div
-              key={index}
-              className={`text-center transform rotate-[${stat.rotation}deg]`}
-              whileHover={{ scale: 1.1, rotate: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <motion.div
-                className={`text-5xl font-black text-${stat.color} mb-2`}
-                animate={{
-                  textShadow: [
-                    "0 0 0px rgba(163, 230, 53, 0.5)",
-                    "0 0 20px rgba(163, 230, 53, 0.5)",
-                    "0 0 0px rgba(163, 230, 53, 0.5)"
-                  ]
-                }}
-                transition={{ duration: 3, repeat: Infinity, delay: index * 0.5 }}
-              >
-                {stat.number}
-              </motion.div>
-              <div className="text-xs text-gray-400 uppercase tracking-wide font-bold">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );

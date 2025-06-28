@@ -1,4 +1,3 @@
-import AdvancedFeaturesSection from '@/components/brutalist/AdvancedFeaturesSection';
 import BrutalistFAQ from '@/components/brutalist/BrutalistFAQ';
 import BrutalistFeatures from '@/components/brutalist/BrutalistFeatures';
 import BrutalistFooter from '@/components/brutalist/BrutalistFooter';
@@ -6,8 +5,8 @@ import BrutalistHero from '@/components/brutalist/BrutalistHero';
 import BrutalistPricing from '@/components/brutalist/BrutalistPricing';
 import BrutalistTestimonials from '@/components/brutalist/BrutalistTestimonials';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -180,7 +179,6 @@ const Index = () => {
       <div className="pt-16 sm:pt-20">
         <BrutalistHero onGetStarted={navigate} />
         <BrutalistFeatures />
-        <AdvancedFeaturesSection />
         <BrutalistTestimonials />
         <BrutalistFAQ />
         <BrutalistPricing onGetStarted={navigate} />
