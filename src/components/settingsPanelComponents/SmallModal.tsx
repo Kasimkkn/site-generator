@@ -1,7 +1,11 @@
-import React from 'react'
-import { func, node } from "prop-types";
+
 import { CgClose } from 'react-icons/cg';
-const SmallModal = ({ onClose, children }) => {
+
+interface SmallModalProps {
+    onClose: () => void;
+    children: React.ReactNode;
+}
+const SmallModal = ({ onClose, children }: SmallModalProps) => {
     return (
         <section className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50'>
             <div className='p-2 flex justify-center bg-background relative rounded-lg'>
@@ -14,9 +18,5 @@ const SmallModal = ({ onClose, children }) => {
     )
 }
 
-SmallModal.propTypes = {
-    onClose: func,
-    children: node
-}
 
 export default SmallModal

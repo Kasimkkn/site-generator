@@ -1,5 +1,6 @@
 
-import PageLayout from "./PageLayout";
+
+import PageLayout from "@/pages/PageLayout";
 
 const Contact = () => {
     return <PageLayout pageName="Contact" />;

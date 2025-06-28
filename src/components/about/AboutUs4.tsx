@@ -1,4 +1,4 @@
-import { AboutData } from '../../types/global';
+import { AboutData } from '@/types/global';
 
 interface AboutUsProps {
     data?: AboutData;

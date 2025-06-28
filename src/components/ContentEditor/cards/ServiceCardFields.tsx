@@ -1,6 +1,6 @@
 
 import { ServiceCard, UpdateArrayContentFunction } from '@/types/global';
-import InputField from "../InputField";
+import InputField from "@/components/ContentEditor/InputField";
 
 interface ServiceCardFieldsProps {
     card: ServiceCard

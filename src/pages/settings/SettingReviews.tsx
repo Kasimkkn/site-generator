@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
-import { LayoutContext } from '../../context/LayoutContext'
-import SettingOption from '../../components/settingsPanelComponents/SettingOption'
-import Reviews from '../../components/reviews/Reviews'
-import Reviews2 from '../../components/reviews/Reviews2'
+import { LayoutContext } from '@/context/LayoutContext'
+import SettingOption from '@/components/settingsPanelComponents/SettingOption'
+import Reviews from '@/components/reviews/Reviews'
+import Reviews2 from '@/components/reviews/Reviews2'
 
 const SettingReviews = () => {
     const { layout, handleChange, content, activePage } = useContext(LayoutContext);

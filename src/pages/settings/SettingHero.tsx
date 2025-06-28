@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import { LayoutContext } from '../../context/LayoutContext'
-import SettingOption from '../../components/settingsPanelComponents/SettingOption'
-import Hero from '../../components/hero/Hero'
-import Hero1 from '../../components/hero/Hero1'
-import Hero2 from '../../components/hero/Hero2'
-import Hero3 from '../../components/hero/Hero3'
+import { LayoutContext } from '@/context/LayoutContext'
+import SettingOption from '@/components/settingsPanelComponents/SettingOption'
+import Hero from '@/components/hero/Hero'
+import Hero1 from '@/components/hero/Hero1'
+import Hero2 from '@/components/hero/Hero2'
+import Hero3 from '@/components/hero/Hero3'
 
 const SettingHero = () => {
     const { layout, handleChange, content, activePage } = useContext(LayoutContext);

@@ -1,10 +1,10 @@
 import { DeleteArrayItemFunction, HandleImageChangeFunction, NavbarData, UpdateArrayContentFunction, UpdateContentFunction } from '@/types/global';
 import { useState } from 'react';
 import { FiPlusCircle, FiTrash2 } from "react-icons/fi";
-import { getInitialCardData } from "../../../utils/cardInitialData";
-import ConfirmModal from "../../settingsPanelComponents/ConfirmModal";
-import ImageUpload from "../ImageUpload";
-import InputField from "../InputField";
+import { getInitialCardData } from "@/utils/cardInitialData";
+import ConfirmModal from "@/components/settingsPanelComponents/ConfirmModal";
+import ImageUpload from "@/components/ContentEditor/ImageUpload";
+import InputField from "@/components/ContentEditor/InputField";
 
 interface NavbarFormProps {
     content: {

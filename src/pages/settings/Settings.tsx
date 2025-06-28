@@ -1,25 +1,25 @@
 
 import React, { useContext } from 'react';
-import CommonModal from '../../components/settingsPanelComponents/CommonModal';
-import { LayoutContext } from '../../context/LayoutContext';
-import About from '../About';
-import Contact from '../Contact';
-import Home from '../Home';
-import Service from '../Service';
-import SettingAboutUs from './SettingAboutUs';
-import SettingContactUs from './SettingContactUs';
-import SettingFooter from './SettingFooter';
-import SettingHero from './SettingHero';
-import SettingNavbar from './SettingNavbar';
-import SettingPageHeader from './SettingPageHeader';
-import SettingProjects from './SettingProjects';
-import SettingReviews from './SettingReviews';
-import SettingService from './SettingService';
-import SettingTeam from './SettingTeam';
+import CommonModal from '@/components/settingsPanelComponents/CommonModal';
+import { LayoutContext } from '@/context/LayoutContext';
+import About from '@/pages/About';
+import Contact from '@/pages/Contact';
+import Home from '@/pages/Home';
+import Service from '@/pages/Service';
+import SettingAboutUs from '@/pages/settings/SettingAboutUs';
+import SettingContactUs from '@/pages/settings/SettingContactUs';
+import SettingFooter from '@/pages/settings/SettingFooter';
+import SettingHero from '@/pages/settings/SettingHero';
+import SettingNavbar from '@/pages/settings/SettingNavbar';
+import SettingPageHeader from '@/pages/settings/SettingPageHeader';
+import SettingProjects from '@/pages/settings/SettingProjects';
+import SettingReviews from '@/pages/settings/SettingReviews';
+import SettingService from '@/pages/settings/SettingService';
+import SettingTeam from '@/pages/settings/SettingTeam';
 
 const Settings: React.FC = () => {
     const { modal, toggleModal, openDifferentPages } = useContext(LayoutContext);
-    
+
     return (
         <div className='relative'>
             {openDifferentPages.home && (

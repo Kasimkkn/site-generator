@@ -1,13 +1,17 @@
-import React from 'react';
-import { func, object } from "prop-types";
+import { Dispatch } from "react";
 
-const ProjectDetailsModal = ({ onSave, setProjectDetails, projectDetails }) => {
+interface ProjectDetailsModalProps {
+    onSave: () => void;
+    setProjectDetails: Dispatch<React.SetStateAction<any>>;
+    projectDetails: any;
+}
+const ProjectDetailsModal = ({ onSave, setProjectDetails, projectDetails }: ProjectDetailsModalProps) => {
     return (
         <div className='flex flex-col gap-2'>
             <div className="flex flex-col gap-2">
                 <label htmlFor="projectName">Project Name</label>
                 <input
-                    label="Project Name"
+                    type="text"
                     value={projectDetails.projectName}
                     onChange={(e) => setProjectDetails({
                         ...projectDetails,
@@ -21,7 +25,7 @@ const ProjectDetailsModal = ({ onSave, setProjectDetails, projectDetails }) => {
             <div className="flex flex-col gap-2">
                 <label htmlFor="projectPath">Project Path</label>
                 <input
-                    label="Project Path"
+                    type="text"
                     value={projectDetails.projectPath}
                     onChange={(e) => setProjectDetails({
                         ...projectDetails,
@@ -42,10 +46,5 @@ const ProjectDetailsModal = ({ onSave, setProjectDetails, projectDetails }) => {
     );
 };
 
-ProjectDetailsModal.propTypes = {
-    onSave: func,
-    setProjectDetails: func,
-    projectDetails: object
-};
 
 export default ProjectDetailsModal;

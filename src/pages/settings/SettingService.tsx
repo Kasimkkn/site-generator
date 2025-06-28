@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
-import { LayoutContext } from '../../context/LayoutContext'
-import SettingOption from '../../components/settingsPanelComponents/SettingOption'
-import Service from '../../components/service/Service'
-import Service1 from '../../components/service/Service1'
-import Service2 from '../../components/service/Service2'
+import { LayoutContext } from '@/context/LayoutContext'
+import SettingOption from '@/components/settingsPanelComponents/SettingOption'
+import Service from '@/components/service/Service'
+import Service1 from '@/components/service/Service1'
+import Service2 from '@/components/service/Service2'
 const SettingService = () => {
     const { layout, handleChange, content, activePage } = useContext(LayoutContext);
 

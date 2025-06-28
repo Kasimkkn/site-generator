@@ -1,6 +1,6 @@
 
 import React, { createContext, useContext, useEffect, useMemo, useState, ReactNode } from "react";
-import { ThemeContextType } from "../types/global";
+import { ThemeContextType } from "@/types/global";
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
@@ -51,7 +51,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     }, [theme]);
 
     const contextValue = useMemo(() => ({ theme, setTheme: updateTheme }), [theme]);
-    
+
     return (
         <ThemeContext.Provider value={contextValue}>
             {children}

@@ -1,5 +1,6 @@
 
-import PageLayout from "./PageLayout";
+
+import PageLayout from "@/pages/PageLayout";
 
 const Service = () => {
     return <PageLayout pageName="Service" />;

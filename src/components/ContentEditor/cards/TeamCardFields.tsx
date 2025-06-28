@@ -1,6 +1,6 @@
 import { HandleImageChangeFunction, TeamCard, UpdateArrayContentFunction } from "@/types/global";
-import ImageUpload from "../ImageUpload";
-import InputField from "../InputField";
+import ImageUpload from "@/components/ContentEditor/ImageUpload";
+import InputField from "@/components/ContentEditor/InputField";
 
 interface TeamCardFieldsProps {
     card: TeamCard;

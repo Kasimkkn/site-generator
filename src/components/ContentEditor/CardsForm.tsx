@@ -1,15 +1,15 @@
 
 import React, { useState } from "react";
 import { FiPlusCircle, FiTrash2 } from "react-icons/fi";
-import { getInitialCardData } from "../../utils/cardInitialData";
-import { AboutCardFields } from "./cards/AboutCardFields";
-import { ProjectCardFields } from "./cards/ProjectCardFields";
-import { ReviewCardFields } from "./cards/ReviewCardFields";
-import { TeamCardFields } from "./cards/TeamCardFields";
-import { ServiceCardFields } from "./cards/ServiceCardFields";
-import { ContactCardFields } from "./cards/ContactCardFields";
-import ConfirmModal from "../settingsPanelComponents/ConfirmModal";
-import { ContentData, UpdateArrayContentFunction, DeleteArrayItemFunction, HandleImageChangeFunction, CardData } from './types';
+import { getInitialCardData } from "@/utils/cardInitialData";
+import { AboutCardFields } from "@/components/ContentEditor/cards/AboutCardFields";
+import { ProjectCardFields } from "@/components/ContentEditor/cards/ProjectCardFields";
+import { ReviewCardFields } from "@/components/ContentEditor/cards/ReviewCardFields";
+import { TeamCardFields } from "@/components/ContentEditor/cards/TeamCardFields";
+import { ServiceCardFields } from "@/components/ContentEditor/cards/ServiceCardFields";
+import { ContactCardFields } from "@/components/ContentEditor/cards/ContactCardFields";
+import ConfirmModal from "@/components/settingsPanelComponents/ConfirmModal";
+import { ContentData, UpdateArrayContentFunction, DeleteArrayItemFunction, HandleImageChangeFunction, CardData } from '@/components/ContentEditor/types';
 
 interface CardsFormProps {
     section: string;
@@ -47,8 +47,8 @@ const CardsForm: React.FC<CardsFormProps> = ({
         };
 
         Object.keys(cardsDataMap).forEach((key) => {
-            if (cardsDataMap[key] && cardsDataMap[key]!.length > 0) {
-                cardsDataMap[key] = cardsDataMap[key]!.filter((card) => card.title || card.description || card.icon);
+            if (cardsDataMap[key] && cardsDataMap[key].length > 0) {
+                cardsDataMap[key] = cardsDataMap[key].filter((card) => card.title || card.description || card.icon);
             }
         });
 

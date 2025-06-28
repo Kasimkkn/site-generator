@@ -1,7 +1,8 @@
 import { FiPlusCircle } from "react-icons/fi";
-import { FooterLinkSection } from "./FooterLinkSection";
-import InputField from "../InputField";
-import ImageUpload from "../ImageUpload";
+import { FooterLinkSection } from "@/components/ContentEditor/forms/FooterLinkSection";
+import InputField from "@/components/ContentEditor/InputField";
+
+import ImageUpload from "@/components/ContentEditor/ImageUpload";
 import { DeleteArrayItemFunction, FooterData, HandleImageChangeFunction, UpdateArrayContentFunction, UpdateContentFunction } from "@/types/global";
 
 interface FooterFormProps {

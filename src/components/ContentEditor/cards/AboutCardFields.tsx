@@ -1,5 +1,5 @@
 import { AboutCard, UpdateArrayContentFunction } from "@/types/global";
-import InputField from "../InputField";
+import InputField from "@/components/ContentEditor/InputField";
 
 interface AboutCardFieldsProps {
     card: AboutCard,

@@ -1,7 +1,15 @@
 import React from 'react'
 import { CgClose } from 'react-icons/cg'
-import { node, string, func } from 'prop-types'
-const CommonModal = ({ children, closeModal, width = 'max-w-7xl', height = 'h-screen', marginLeft = 'lg:ml-56' }) => {
+
+interface CommonModalProps {
+    children: React.ReactNode
+    closeModal: () => void
+    width?: string
+    height?: string
+    marginLeft?: string
+}
+
+const CommonModal = ({ children, closeModal, width = 'max-w-7xl', height = 'h-screen', marginLeft = 'lg:ml-56' }: CommonModalProps) => {
     return (
         <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[60]'>
             <button className='absolute bg-primary transition-all p-2 rounded-full hover:rotate-90 top-2 left-2'
@@ -14,14 +22,6 @@ const CommonModal = ({ children, closeModal, width = 'max-w-7xl', height = 'h-sc
             </div>
         </div>
     )
-}
-
-CommonModal.propTypes = {
-    children: node.isRequired,
-    closeModal: func.isRequired,
-    width: string,
-    height: string,
-    marginLeft: string
 }
 
 export default CommonModal

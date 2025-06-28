@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
-import { LayoutContext } from '../../context/LayoutContext'
-import SettingOption from '../../components/settingsPanelComponents/SettingOption'
-import Projects from '../../components/projects/Projects'
-import Project1 from '../../components/projects/Projects1'
+import { LayoutContext } from '@/context/LayoutContext'
+import SettingOption from '@/components/settingsPanelComponents/SettingOption'
+import Projects from '@/components/projects/Projects'
+import Project1 from '@/components/projects/Projects1'
 const SettingProjects = () => {
     const { layout, handleChange, content, activePage } = useContext(LayoutContext);
 

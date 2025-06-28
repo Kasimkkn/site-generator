@@ -1,7 +1,7 @@
 
 import { createContext, useEffect, useMemo, useState, ReactNode } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
-import intialData from '../data/intialData';
+import intialData from '@/data/initialData';
 
 interface PageLayout {
     page: string;
@@ -11,7 +11,7 @@ interface PageLayout {
 }
 
 interface ContentPage {
-    id?: string;
+    id?: string | number;
     page: string;
     content: any;
 }
@@ -155,7 +155,7 @@ const LayoutProvider = ({ children }: LayoutProviderProps) => {
         const allComponents = layout.flatMap((page) =>
             Object.entries(page.layout).map(([key, value]) => ({
                 name: value,
-                path: `K:/divine-dev-hub/custom-site-generator/src/components/${key}/${value}.jsx`,
+                path: `K:/divine-dev-hub/custom-site-generator/src/components/${key}/${value}.tsx`,
                 parentName: key
             }))
         );

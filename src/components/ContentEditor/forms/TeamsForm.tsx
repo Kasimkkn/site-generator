@@ -1,6 +1,7 @@
 import { TeamData, UpdateContentFunction } from '@/types/global';
 
-import InputField from "../InputField";
+import InputField from "@/components/ContentEditor/InputField";
+
 interface TeamsFormProps {
     content: {
         teams: TeamData

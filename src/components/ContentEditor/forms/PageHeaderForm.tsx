@@ -1,6 +1,6 @@
 import { HandleImageChangeFunction, PageHeaderData, UpdateContentFunction } from "@/types/global";
-import ImageUpload from "../ImageUpload";
-import InputField from "../InputField";
+import ImageUpload from "@/components/ContentEditor/ImageUpload";
+import InputField from "@/components/ContentEditor/InputField";
 
 interface PageHeaderFormProps {
     content: {

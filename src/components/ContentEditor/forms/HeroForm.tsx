@@ -1,5 +1,5 @@
-import ImageUpload from "../ImageUpload";
-import InputField from "../InputField";
+import ImageUpload from "@/components/ContentEditor/ImageUpload";
+import InputField from "@/components/ContentEditor/InputField";
 import { HandleImageChangeFunction, HeroData, UpdateContentFunction } from "@/types/global";
 
 interface HeroFormProps {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { NavbarData } from '../../types/global';
+import { NavbarData } from '@/types/global';
 
 interface HeroProps {
     data?: NavbarData;

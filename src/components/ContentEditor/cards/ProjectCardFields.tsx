@@ -1,6 +1,6 @@
 import { HandleImageChangeFunction, ProjectCard, UpdateArrayContentFunction } from "@/types/global";
-import ImageUpload from "../ImageUpload";
-import InputField from "../InputField";
+import ImageUpload from "@/components/ContentEditor/ImageUpload";
+import InputField from "@/components/ContentEditor/InputField";
 
 interface ProjectCardFieldsProps {
     card: ProjectCard;

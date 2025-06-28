@@ -1,5 +1,6 @@
 import { ContactData, UpdateContentFunction } from "@/types/global";
-import InputField from "../InputField";
+import InputField from "@/components/ContentEditor/InputField";
+
 
 interface ContactFormProps {
     content: {

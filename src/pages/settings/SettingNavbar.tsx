@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import Navbar from "../../components/navbar/Navbar";
-import Navbar1 from "../../components/navbar/Navbar1";
-import { LayoutContext } from "../../context/LayoutContext";
-import SettingOption from "../../components/settingsPanelComponents/SettingOption";
+import Navbar from "@/components/navbar/Navbar";
+import Navbar1 from "@/components/navbar/Navbar1";
+import { LayoutContext } from "@/context/LayoutContext";
+import SettingOption from "@/components/settingsPanelComponents/SettingOption";
 
 const SettingNavbar = () => {
     const { layout, handleChange, content, activePage } = useContext(LayoutContext);

@@ -1,4 +1,3 @@
-import { bool, func, string } from 'prop-types';
 import { useContext, useEffect, useState } from 'react';
 import { CiAlignBottom, CiExport } from 'react-icons/ci';
 import { GoPeople } from 'react-icons/go';
@@ -17,13 +16,13 @@ import {
     RxDashboard,
     RxHamburgerMenu
 } from 'react-icons/rx';
-import { LayoutContext } from '../../context/LayoutContext';
-import { capitalizeFirstLetter } from '../../utils/features';
-import { ThemeSelector } from '../ThemeSelector';
-import ChangePageModal from './ChangePageModal';
-import CommonModal from './CommonModal';
-import ProjectDetailsModal from './ProjectDetailsModal';
-import SmallModal from './SmallModal';
+import { LayoutContext } from '@/context/LayoutContext';
+import { capitalizeFirstLetter } from '@/utils/features';
+import { ThemeSelector } from '@/components/ThemeSelector';
+import ChangePageModal from '@/components/settingsPanelComponents/ChangePageModal';
+import CommonModal from '@/components/settingsPanelComponents/CommonModal';
+import ProjectDetailsModal from '@/components/settingsPanelComponents/ProjectDetailsModal';
+import SmallModal from '@/components/settingsPanelComponents/SmallModal';
 import toast from 'react-hot-toast';
 
 export const NAV_ITEMS = [
@@ -41,7 +40,13 @@ export const NAV_ITEMS = [
     { id: 'settings', label: 'settings', icon: LiaExchangeAltSolid },
 ];
 
-const NavItem = ({ label, icon: Icon, onClick }) => (
+
+interface NavItemsProps {
+    label: string;
+    icon: any;
+    onClick: () => void
+}
+const NavItem = ({ label, icon: Icon, onClick }: NavItemsProps) => (
     <button
         onClick={onClick}
         className="group relative flex items-center text-base gap-3 rounded-lg py-3 px-4 font-medium transition-all duration-200 text-text hover:bg-primary hover:text-background focus:outline-none"
@@ -51,13 +56,12 @@ const NavItem = ({ label, icon: Icon, onClick }) => (
     </button>
 );
 
-NavItem.propTypes = {
-    label: string,
-    icon: func,
-    onClick: func
-};
+interface MobileNavbarProps {
+    sidebarOpen: boolean;
+    handleSidebarOpen: () => void;
+}
 
-const MobileNavbar = ({ sidebarOpen, handleSidebarOpen }) => (
+const MobileNavbar = ({ sidebarOpen, handleSidebarOpen }: MobileNavbarProps) => (
     <div className="lg:hidden fixed top-0 left-0 right-0 z-20 flex h-16 items-center justify-between bg-background px-4 shadow-sm">
         <div className="flex items-center gap-2 font-semibold text-xl">
             <RxDashboard className="h-6 w-6" />
@@ -76,10 +80,6 @@ const MobileNavbar = ({ sidebarOpen, handleSidebarOpen }) => (
     </div>
 );
 
-MobileNavbar.propTypes = {
-    sidebarOpen: bool,
-    handleSidebarOpen: func
-};
 
 const Sidebar = () => {
     const { toggleModal, exportingTheComponents, layout, activePage } = useContext(LayoutContext);

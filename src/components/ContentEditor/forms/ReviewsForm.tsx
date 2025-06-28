@@ -1,4 +1,5 @@
-import InputField from "../InputField";
+import InputField from "@/components/ContentEditor/InputField";
+
 import { ReviewData, UpdateContentFunction } from '@/types/global';
 
 interface ReviewsFormProps {

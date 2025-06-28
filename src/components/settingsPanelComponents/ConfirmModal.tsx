@@ -1,6 +1,10 @@
-import React from 'react'
-import { bool, string, func } from "prop-types";
-const ConfirmModal = ({ isOpen, message, onConfirm, onCancel }) => {
+interface ConfirmModalProps {
+    isOpen: boolean;
+    message: string;
+    onConfirm: () => void;
+    onCancel: () => void;
+}
+const ConfirmModal = ({ isOpen, message, onConfirm, onCancel }: ConfirmModalProps) => {
     if (!isOpen) return null;
 
     return (
@@ -24,13 +28,6 @@ const ConfirmModal = ({ isOpen, message, onConfirm, onCancel }) => {
             </div>
         </div>
     );
-};
-
-ConfirmModal.propTypes = {
-    isOpen: bool,
-    message: string,
-    onConfirm: func,
-    onCancel: func,
 };
 
 export default ConfirmModal

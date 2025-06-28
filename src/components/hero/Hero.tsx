@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { HeroData } from '../../types/global';
+import { HeroData } from '@/types/global';
 
 interface HeroProps {
     data?: HeroData;

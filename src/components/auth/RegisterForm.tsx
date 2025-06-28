@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Eye, EyeOff, Mail, Lock, User, ArrowRight } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
-import SocialLoginButtons from './SocialLoginButtons';
+import SocialLoginButtons from '@/components/auth/SocialLoginButtons';
 
 interface RegisterFormProps {
   onViewChange: (view: 'login' | 'register' | 'forgot' | 'reset') => void;
@@ -27,21 +27,21 @@ const RegisterForm = ({ onViewChange }: RegisterFormProps) => {
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
-    
+
     if (!formData.firstName.trim()) {
       newErrors.firstName = 'First name is required';
     }
-    
+
     if (!formData.lastName.trim()) {
       newErrors.lastName = 'Last name is required';
     }
-    
+
     if (!formData.email) {
       newErrors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email';
     }
-    
+
     if (!formData.password) {
       newErrors.password = 'Password is required';
     } else if (formData.password.length < 8) {
@@ -49,17 +49,17 @@ const RegisterForm = ({ onViewChange }: RegisterFormProps) => {
     } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(formData.password)) {
       newErrors.password = 'Password must contain uppercase, lowercase, and number';
     }
-    
+
     if (!formData.confirmPassword) {
       newErrors.confirmPassword = 'Please confirm your password';
     } else if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = 'Passwords do not match';
     }
-    
+
     if (!acceptTerms) {
       newErrors.terms = 'You must accept the terms and conditions';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -73,22 +73,22 @@ const RegisterForm = ({ onViewChange }: RegisterFormProps) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
-    
+
     setIsLoading(true);
-    
+
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       toast({
         title: "Account Created!",
         description: "Please check your email to verify your account.",
       });
-      
+
       console.log('Registration attempt:', formData);
-      
+
       // Redirect to login after successful registration
       onViewChange('login');
     } catch (error) {

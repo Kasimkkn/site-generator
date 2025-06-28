@@ -1,11 +1,11 @@
 
 import React, { useState, useEffect } from "react";
-import { useTheme } from "../context/changeTheme";
+import { useTheme } from "@/context/changeTheme";
 
 export const ThemeSelector: React.FC = () => {
     const { theme, setTheme } = useTheme();
     const [colors, setColors] = useState(theme);
-    
+
     useEffect(() => {
         setColors(theme);
     }, [theme]);

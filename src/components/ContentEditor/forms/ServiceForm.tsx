@@ -1,4 +1,5 @@
-import InputField from "../InputField";
+import InputField from "@/components/ContentEditor/InputField";
+
 import { ServiceData, UpdateContentFunction } from '@/types/global';
 
 interface ServiceFormProps {

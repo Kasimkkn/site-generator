@@ -1,5 +1,5 @@
 
-import { NavbarData } from '../../types/global';
+import { NavbarData } from '@/types/global';
 
 interface HeroProps {
     data?: NavbarData;

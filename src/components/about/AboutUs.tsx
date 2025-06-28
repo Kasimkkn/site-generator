@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { AboutData } from '../../types/global';
+import { AboutData } from '@/types/global';
 
 interface AboutUsProps {
     data?: AboutData;

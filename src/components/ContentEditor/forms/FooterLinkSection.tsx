@@ -1,9 +1,10 @@
 import { DeleteArrayItemFunction, FooterLinkSection as FooterLinkTypes, UpdateArrayContentFunction } from "@/types/global";
 import { useState } from 'react';
 import { FiPlusCircle, FiTrash2 } from "react-icons/fi";
-import ConfirmModal from "../../settingsPanelComponents/ConfirmModal";
-import InputField from "../InputField";
-import { FooterLinks } from "./FooterLinks";
+import ConfirmModal from "@/components/settingsPanelComponents/ConfirmModal";
+import InputField from "@/components/ContentEditor/InputField";
+
+import { FooterLinks } from "@/components/ContentEditor/forms/FooterLinks";
 
 
 interface FooterLinkSectionProps {

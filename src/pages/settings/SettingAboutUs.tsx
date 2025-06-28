@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'
-import AboutUs from '../../components/about/AboutUs'
-import AboutOne from '../../components/about/AboutUs1'
-import AboutUs3 from '../../components/about/AboutUs3'
-import AboutUs2 from '../../components/about/AboutUs2'
-import AboutUs4 from '../../components/about/AboutUs4'
-import SettingOption from '../../components/settingsPanelComponents/SettingOption'
-import { LayoutContext } from '../../context/LayoutContext'
+import { useContext } from 'react'
+import AboutUs from '@/components/about/AboutUs'
+import AboutOne from '@/components/about/AboutUs1'
+import AboutUs2 from '@/components/about/AboutUs2'
+import AboutUs3 from '@/components/about/AboutUs3'
+import AboutUs4 from '@/components/about/AboutUs4'
+import SettingOption from '@/components/settingsPanelComponents/SettingOption'
+import { LayoutContext } from '@/context/LayoutContext'
 
 const SettingAboutUs = () => {
     const { layout, handleChange, content, activePage } = useContext(LayoutContext);

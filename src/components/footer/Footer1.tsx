@@ -1,4 +1,4 @@
-import { FooterData } from '../../types/global';
+import { FooterData } from '@/types/global';
 
 interface FooterProps {
     data?: FooterData;

@@ -1,9 +1,8 @@
 import React, { useContext } from 'react'
-import { LayoutContext } from '../../context/LayoutContext';
-import PageHeader from '../../components/pageheader/PageHeader';
-import SettingOption from '../../components/settingsPanelComponents/SettingOption';
-
-const SettingPageHeader = () => {
+import { LayoutContext } from '@/context/LayoutContext'
+import SettingOption from '@/components/settingsPanelComponents/SettingOption'
+import Teams from '@/components/teams/Teams'
+const SettingTeam = () => {
     const { layout, handleChange, content, activePage } = useContext(LayoutContext);
 
     const normalizedPage = activePage?.toLowerCase();
@@ -11,21 +10,21 @@ const SettingPageHeader = () => {
     const activePageContent =
         content.find((pageData) => pageData.page.toLowerCase() === normalizedPage)?.content || {};
 
-    const data = {
-        label: 'pageHeader', section: 'pageheader', options: [{
-            label: 'pageHeader', components: [<PageHeader key="pageheader" data={activePageContent.pageheader} />]
-        },]
+    const data =
+    {
+        label: 'Teams', section: 'teams', options: [{
+            label: 'Teams', components: [<Teams key={'teams'} data={activePageContent.teams} />]
+        }]
     }
-
     return (
         <SettingOption
             label={data.label}
             onChange={(value) => handleChange(activePage, data.section, value)}
             options={data.options}
             value={layout.find((item) => item.page.toLowerCase() === normalizedPage)?.layout[data.section]}
-            key="page-header"
+            key="teams"
         />
     )
 }
 
-export default SettingPageHeader
+export default SettingTeam

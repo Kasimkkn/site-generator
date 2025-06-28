@@ -1,10 +1,9 @@
 import React, { useContext } from 'react'
-import { LayoutContext } from '../../context/LayoutContext'
-import SettingOption from '../../components/settingsPanelComponents/SettingOption'
-import ContactUs1 from '../../components/contact/ContactUs1'
-import ContactUs2 from '../../components/contact/ContactUs2'
-
-const SettingContactUs = () => {
+import { LayoutContext } from '@/context/LayoutContext'
+import SettingOption from '@/components/settingsPanelComponents/SettingOption'
+import Footer from '@/components/footer/Footer'
+import Footer1 from '@/components/footer/Footer1'
+const SettingFooter = () => {
     const { layout, handleChange, content, activePage } = useContext(LayoutContext);
 
     const normalizedPage = activePage?.toLowerCase();
@@ -13,10 +12,10 @@ const SettingContactUs = () => {
         content.find((pageData) => pageData.page.toLowerCase() === normalizedPage)?.content || {};
 
     const data = {
-        label: 'Contact', section: 'contact', options: [{
-            label: 'ContactUs1', components: [<ContactUs1 key={'ContactUs1'} data={activePageContent.contact} />]
+        label: 'Footer', section: 'footer', options: [{
+            label: 'Footer', components: [<Footer key={'footer'} data={activePageContent.footer} />]
         }, {
-            label: 'ContactUs2', components: [<ContactUs2 key={'ContactUs2'} data={activePageContent.contact} />]
+            label: 'Footer1', components: [<Footer1 key={'footer-one'} data={activePageContent.footer} />]
         }]
     }
     return (
@@ -25,9 +24,9 @@ const SettingContactUs = () => {
             onChange={(value) => handleChange(activePage, data.section, value)}
             options={data.options}
             value={layout.find((item) => item.page.toLowerCase() === normalizedPage)?.layout[data.section]}
-            key="contact"
+            key="footer"
         />
     )
 }
 
-export default SettingContactUs
+export default SettingFooter

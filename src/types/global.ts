@@ -42,7 +42,7 @@ export interface ServiceData {
 }
 
 export interface ServiceCard {
-  id?: string;
+  id?: string | number;
   image?: string;
   title: string;
   description: string;
@@ -56,7 +56,7 @@ export interface ProjectData {
 }
 
 export interface ProjectCard {
-  id: string;
+  id?: string | number;
   title: string;
   description: string;
   image: string;
@@ -70,7 +70,7 @@ export interface TeamData {
 }
 
 export interface TeamCard {
-  id?: string;
+  id?: string | number;
   avatar: string;
   name: string;
   title: string;
@@ -87,7 +87,7 @@ export interface ReviewData {
 }
 
 export interface ReviewCard {
-  id: string;
+  id?: string | number;
   avatar: string;
   name: string;
   title: string;
@@ -106,7 +106,7 @@ export interface ContactData {
 export interface ContactCard {
   title: string;
   contact: string;
-  icon: string;
+  icon?: string;
 }
 
 export interface FooterData {
@@ -117,13 +117,13 @@ export interface FooterData {
 }
 
 export interface FooterLinkSection {
-  id?: string;
+  id?: string | number;
   title: string;
   links: FooterLink[];
 }
 
 export interface FooterLink {
-  id?: string;
+  id?: string | number;
   name: string;
   href: string;
 }
@@ -157,6 +157,7 @@ export interface LayoutItem {
 }
 
 export interface ContentItem {
+  id?: string | number;
   page: string;
   content: PageContent;
 }

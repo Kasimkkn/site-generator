@@ -1,8 +1,9 @@
 import { FooterLinkSection, UpdateArrayContentFunction } from '@/types/global';
 import { useState } from 'react';
 import { FiTrash2 } from 'react-icons/fi';
-import ConfirmModal from "../../settingsPanelComponents/ConfirmModal";
-import InputField from "../InputField";
+import ConfirmModal from "@/components/settingsPanelComponents/ConfirmModal";
+import InputField from "@/components/ContentEditor/InputField";
+
 
 interface FooterLinksProps {
     linkSection: FooterLinkSection

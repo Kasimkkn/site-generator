@@ -53,7 +53,7 @@ export const copyComponents = async (projectPath, componentsList) => {
 
       console.log("\n📦 Copying component:", componentName)
       console.log("Source path:", sourcePath);
-      const destinationFile = path.join(componentsDir, `${componentName}.jsx`);
+      const destinationFile = path.join(componentsDir, `${componentName}.tsx`);
       fs.copyFileSync(sourcePath, destinationFile);
 
       console.log(`✅ ${componentName} component copied!`);
@@ -98,13 +98,13 @@ const ${page.page}Page = () => {
 
 export default ${page.page}Page;`;
 
-    fs.writeFileSync(path.join(pagesDir, `${page.page}Page.jsx`), pageCode.trim());
+    fs.writeFileSync(path.join(pagesDir, `${page.page}Page.tsx`), pageCode.trim());
     console.log(`✅ ${page.page} page created!`);
   });
 };
 
 export const updateAppFile = async (projectPath, pagesData) => {
-  console.log('\n📦 Updating App.jsx...');
+  console.log('\n📦 Updating App.tsx...');
   const appCode = `
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
@@ -123,16 +123,16 @@ function App() {
 
 export default App;`;
 
-  fs.writeFileSync(path.join(projectPath, "src/App.jsx"), appCode.trim());
+  fs.writeFileSync(path.join(projectPath, "src/App.tsx"), appCode.trim());
 };
 
 export const updateMainFile = async (projectPath) => {
-  console.log('\n📦 Updating main.jsx...');
+  console.log('\n📦 Updating main.tsx...');
   const mainCode = `
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
-import App from './App.jsx'
+import App from './App.tsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -143,7 +143,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </React.StrictMode>,
 )`;
 
-  fs.writeFileSync(path.join(projectPath, "src/main.jsx"), mainCode.trim());
+  fs.writeFileSync(path.join(projectPath, "src/main.tsx"), mainCode.trim());
 };
 
 export const setupProjectStructure = async (projectPath) => {

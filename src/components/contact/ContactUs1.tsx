@@ -1,5 +1,5 @@
 import React from "react";
-import { ContactData } from "../../types/global";
+import { ContactData } from "@/types/global";
 const ContactUs1: React.FC<{ data: ContactData }> = ({ data }) => {
     return (
 

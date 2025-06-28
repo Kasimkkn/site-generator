@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Eye, EyeOff, Mail, Lock, ArrowRight } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
-import SocialLoginButtons from './SocialLoginButtons';
+import SocialLoginButtons from '@/components/auth/SocialLoginButtons';
 
 interface LoginFormProps {
   onViewChange: (view: 'login' | 'register' | 'forgot' | 'reset') => void;
@@ -20,40 +20,40 @@ const LoginForm = ({ onViewChange }: LoginFormProps) => {
 
   const validateForm = () => {
     const newErrors: { email?: string; password?: string } = {};
-    
+
     if (!email) {
       newErrors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(email)) {
       newErrors.email = 'Please enter a valid email';
     }
-    
+
     if (!password) {
       newErrors.password = 'Password is required';
     } else if (password.length < 6) {
       newErrors.password = 'Password must be at least 6 characters';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
-    
+
     setIsLoading(true);
-    
+
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       // For demo purposes, show success
       toast({
         title: "Login Successful!",
         description: "Welcome back to Folio Generator",
       });
-      
+
       console.log('Login attempt:', { email, password });
     } catch (error) {
       toast({

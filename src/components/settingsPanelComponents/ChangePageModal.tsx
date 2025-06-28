@@ -1,6 +1,6 @@
 
 import React, { useContext } from "react";
-import { LayoutContext } from "../../context/LayoutContext";
+import { LayoutContext } from "@/context/LayoutContext";
 
 const ChangePageModal: React.FC = () => {
     const { openDifferentPages, setOpenDifferentPages, setActivePage } = useContext(LayoutContext);

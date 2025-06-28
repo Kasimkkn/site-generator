@@ -1,6 +1,9 @@
-import { object } from 'prop-types';
+import { TeamData } from "@/types/global"
 
-const Teams = ({ data }) => {
+interface TeamProps {
+    data: TeamData
+}
+const Teams: React.FC<TeamProps> = ({ data }) => {
     return (
         <section className="py-14">
             <div className="max-w-screen-2xl mx-auto px-4 md:px-8">
@@ -48,10 +51,6 @@ const Teams = ({ data }) => {
             </div>
         </section>
     )
-}
-
-Teams.propTypes = {
-    data: object
 }
 
 export default Teams

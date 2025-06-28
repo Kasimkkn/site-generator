@@ -1,11 +1,11 @@
 
 import React, { useContext, useState } from "react";
 import { FiX } from "react-icons/fi";
-import { LayoutContext } from "../../context/LayoutContext";
-import CardsForm from "./CardsForm";
-import GeneralForm from "./GeneralForm";
+import { LayoutContext } from "@/context/LayoutContext";
+import CardsForm from "@/components/ContentEditor/CardsForm";
+import GeneralForm from "@/components/ContentEditor/GeneralForm";
 import toast from "react-hot-toast";
-import { ContentData } from './types';
+import { ContentData } from '@/components/ContentEditor/types';
 
 interface ContentEditorProps {
     isOpen: boolean;
@@ -35,7 +35,7 @@ const ContentEditor: React.FC<ContentEditorProps> = ({ isOpen, onClose, section 
             return obj;
         }
         const pathArray = path.split(".");
-        const lastField = pathArray.pop()!;
+        const lastField = pathArray.pop();
 
         let current = obj;
         for (const field of pathArray) {

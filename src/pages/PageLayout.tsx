@@ -1,8 +1,8 @@
 
 import React, { useContext } from "react";
 
-import { LayoutContext } from "../context/LayoutContext";
-import { componentMap } from "../components";
+import { LayoutContext } from "@/context/LayoutContext";
+import { componentMap } from "@/components";
 
 interface PageLayoutProps {
     pageName: string;

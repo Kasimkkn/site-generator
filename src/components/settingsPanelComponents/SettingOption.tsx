@@ -1,10 +1,20 @@
 import React, { useContext, useState } from 'react';
-import { LayoutContext } from '../../context/LayoutContext';
-import ContentEditor from '../ContentEditor/ContentEditor';
-import { string, func, array } from 'prop-types'
-import { addSpaceBetweenNumbersAndWords } from '../../utils/features';
 import { CiEdit } from 'react-icons/ci';
-const SettingOption = ({ label, value, options, onChange }) => {
+import { LayoutContext } from '@/context/LayoutContext';
+import { addSpaceBetweenNumbersAndWords } from '@/utils/features';
+import ContentEditor from '@/components/ContentEditor/ContentEditor';
+
+
+interface SettingOptionProps {
+    label: string;
+    value: string;
+    options: {
+        label: string;
+        components: React.ReactNode[];
+    }[];
+    onChange: (value: string) => void;
+}
+const SettingOption = ({ label, value, options, onChange }: SettingOptionProps) => {
     const { toggleEditModal } = useContext(LayoutContext);
     const [activeTabOpen, setActiveTabOpen] = useState(null);
     const [isContentEditorOpen, setIsContentEditorOpen] = useState(false);
@@ -63,12 +73,5 @@ const SettingOption = ({ label, value, options, onChange }) => {
     );
 };
 
-
-SettingOption.propTypes = {
-    label: string,
-    value: string,
-    options: array,
-    onChange: func
-}
 
 export default SettingOption;

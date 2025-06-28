@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Sidebar from '../../components/settingsPanelComponents/SideBar';
+import Sidebar from '@/components/settingsPanelComponents/SideBar';
 
 const SettingsLayout: React.FC = () => {
     return (
