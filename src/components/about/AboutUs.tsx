@@ -64,10 +64,10 @@ const AboutUs: React.FC<AboutUsProps> = ({ data }) => {
                         <div className="rounded-2xl h-full w-full p-1 overflow-hidden group-hover:border-slate-700 relative z-50">
                             <div className="relative z-50">
                                 <div className="p-2">
-                                    <h4 className="text-zinc-900 text-4xl font-bold tracking-wide">
+                                    <h4 className="text-text text-4xl font-bold tracking-wide">
                                         {item.title}
                                     </h4>
-                                    <p className="mt-4 text-base uppercase text-zinc-900 tracking-wide leading-relaxed">
+                                    <p className="mt-4 text-base uppercase text-text tracking-wide leading-relaxed">
                                         {item.text}
                                     </p>
                                 </div>

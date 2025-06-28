@@ -3,8 +3,7 @@ import { ContactData } from "@/types/global";
 const ContactUs1: React.FC<{ data: ContactData }> = ({ data }) => {
     return (
 
-        <section className="relative overflow-hidden bg-background p-10"
-            style={{ backgroundImage: `url('https://static.vecteezy.com/system/resources/previews/005/851/678/non_2x/grid-room-3d-perspective-black-background-virtual-reality-construction-interior-design-technology-and-template-illustration-vector.jpg')`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}
+        <section className="relative overflow-hidden bg-background p-10 border-t-primary border-t"
         >
             <div className="container px-10">
                 <div className="-mx-4 flex flex-wrap lg:justify-between">
@@ -12,22 +11,22 @@ const ContactUs1: React.FC<{ data: ContactData }> = ({ data }) => {
                         <div className="max-w-[570px] lg:mb-0">
                             <span className="
                                 text-[32px] font-bold uppercase text-text sm:text-[40px] lg:text-[36px] xl:text-[40px]
-                                block text-2xl text-white">
+                                block text-2xl">
                                 Contact Us
                             </span>
-                            <h2 className="my-10 text-white  font-semibold text-primary text-2xl">
+                            <h2 className="my-10 font-semibold text-primary text-2xl">
                                 {data?.contactTitle}
                             </h2>
-                            <p className="mb-9 text-base text-white leading-relaxed text-text">
+                            <p className="mb-9 text-base leading-relaxed text-text">
                                 {data?.contactDescription}
                             </p>
                             {data?.contactsData?.map((item, index) => (
                                 <div key={index + 1} className="mb-8 flex w-full max-w-[370px]">
                                     <div className="w-full">
-                                        <h4 className="mb-1 text-xl text-white font-bold text-text">
+                                        <h4 className="mb-1 text-xl font-bold text-text">
                                             {item.title}
                                         </h4>
-                                        <p className="text-base text-white text">
+                                        <p className="text-base text-text text">
                                             {item.contact}
                                         </p>
                                     </div>

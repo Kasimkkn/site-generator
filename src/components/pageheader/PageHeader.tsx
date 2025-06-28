@@ -19,10 +19,10 @@ const PageHeader: React.FC<PageHeaderProps> = ({ data }) => {
                 <div className="relative max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-col justify-center h-full">
                         <div className="max-w-3xl">
-                            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                            <h1 className="text-4xl font-bold tracking-tight text-primary sm:text-5xl lg:text-6xl">
                                 {data.title}
                             </h1>
-                            <p className="mt-6 text-xl text-gray-300 max-w-2xl">
+                            <p className="mt-6 text-xl text-text max-w-2xl">
                                 {data.description}
                             </p>
                         </div>
