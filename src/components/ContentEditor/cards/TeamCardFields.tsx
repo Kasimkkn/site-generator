@@ -1,3 +1,4 @@
+
 import { HandleImageChangeFunction, TeamCard, UpdateArrayContentFunction } from "@/types/global";
 import ImageUpload from "@/components/ContentEditor/ImageUpload";
 import InputField from "@/components/ContentEditor/InputField";
@@ -11,7 +12,7 @@ interface TeamCardFieldsProps {
 export const TeamCardFields = ({ card, index, updateArrayContent, handleImageChange }: TeamCardFieldsProps) => (
     <div className="grid grid-cols-2 gap-3">
         <ImageUpload
-            id={card.id}
+            id={String(card.id)}
             label="Avatar"
             onChange={(e) => {
                 handleImageChange(e, `teamsCardsData[${index}].avatar`)
@@ -83,5 +84,3 @@ export const TeamCardFields = ({ card, index, updateArrayContent, handleImageCha
         </div>
     </div>
 );
-
-

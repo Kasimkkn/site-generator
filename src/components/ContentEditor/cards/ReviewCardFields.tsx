@@ -1,3 +1,4 @@
+
 import { HandleImageChangeFunction, ReviewCard, UpdateArrayContentFunction } from "@/types/global";
 import ImageUpload from "@/components/ContentEditor/ImageUpload";
 import InputField from "@/components/ContentEditor/InputField";
@@ -12,7 +13,7 @@ export const ReviewCardFields = ({ card, index, updateArrayContent, handleImageC
     <div className="grid grid-cols-12 gap-2">
         <div className="col-span-4">
             <ImageUpload
-                id={card.id}
+                id={String(card.id)}
                 label="Avatar"
                 onChange={(e) => handleImageChange(e, `reviewsCardsData[${index}].avatar`)}
                 preview={card.avatar}

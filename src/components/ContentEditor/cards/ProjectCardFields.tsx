@@ -1,3 +1,4 @@
+
 import { HandleImageChangeFunction, ProjectCard, UpdateArrayContentFunction } from "@/types/global";
 import ImageUpload from "@/components/ContentEditor/ImageUpload";
 import InputField from "@/components/ContentEditor/InputField";
@@ -10,9 +11,9 @@ interface ProjectCardFieldsProps {
 }
 export const ProjectCardFields = ({ card, index, updateArrayContent, handleImageChange }: ProjectCardFieldsProps) => {
     return (
-        <div className="grid grid-cols-2 gap-3" key={index} id={card.id}>
+        <div className="grid grid-cols-2 gap-3" key={index} id={String(card.id)}>
             <ImageUpload
-                id={card.id}
+                id={String(card.id)}
                 label="Project Image"
                 onChange={(e) => handleImageChange(e, `projectsCardsData[${index}].image`)}
                 preview={card.image}
