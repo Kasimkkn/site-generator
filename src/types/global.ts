@@ -46,6 +46,8 @@ export interface ServiceCard {
   image?: string;
   title: string;
   description: string;
+  text?: string;
+  price?: string;
   color?: string;
 }
 

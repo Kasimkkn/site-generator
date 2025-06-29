@@ -60,25 +60,27 @@ const VisualEditService: React.FC<VisualEditServiceProps> = ({ data }) => {
               
               <EditableElement
                 section="service"
-                field={`serviceCardsData.${index}.text`}
+                field={`serviceCardsData.${index}.description`}
                 type="text"
-                value={service.text || ''}
+                value={service.description || ''}
               >
                 <p className="text-gray-300 mb-6">
-                  {service.text}
+                  {service.description}
                 </p>
               </EditableElement>
               
-              <EditableElement
-                section="service"
-                field={`serviceCardsData.${index}.price`}
-                type="text"
-                value={service.price || ''}
-              >
-                <div className="text-2xl font-black text-pink-500">
-                  {service.price}
-                </div>
-              </EditableElement>
+              {service.price && (
+                <EditableElement
+                  section="service"
+                  field={`serviceCardsData.${index}.price`}
+                  type="text"
+                  value={service.price || ''}
+                >
+                  <div className="text-2xl font-black text-pink-500">
+                    {service.price}
+                  </div>
+                </EditableElement>
+              )}
             </motion.div>
           ))}
         </div>

@@ -1,7 +1,6 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Palette, Type, Layout, Spacing, X } from 'lucide-react';
+import { Palette, Type, Layout, Square, X } from 'lucide-react';
 import { useVisualEdit } from '@/context/VisualEditContext';
 
 const StylePanel: React.FC = () => {
@@ -24,7 +23,7 @@ const StylePanel: React.FC = () => {
     { id: 'colors', icon: Palette, label: 'Colors' },
     { id: 'typography', icon: Type, label: 'Text' },
     { id: 'layout', icon: Layout, label: 'Layout' },
-    { id: 'spacing', icon: Spacing, label: 'Spacing' },
+    { id: 'spacing', icon: Square, label: 'Spacing' },
   ];
 
   const colorOptions = [
