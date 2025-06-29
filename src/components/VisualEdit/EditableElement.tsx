@@ -26,7 +26,8 @@ const EditableElement: React.FC<EditableElementProps> = ({
     setSelectedElement, 
     hoveredElement, 
     setHoveredElement,
-    updateContent 
+    updateContent,
+    customStyles
   } = useVisualEdit();
   
   const [isEditing, setIsEditing] = useState(false);
@@ -38,6 +39,9 @@ const EditableElement: React.FC<EditableElementProps> = ({
   const isSelected = selectedElement?.id === elementId;
   const isHovered = hoveredElement === elementId;
 
+  // Get custom styles for this element
+  const elementStyles = customStyles[section]?.[field] || {};
+
   useEffect(() => {
     setEditValue(value);
   }, [value]);
@@ -48,6 +52,15 @@ const EditableElement: React.FC<EditableElementProps> = ({
       inputRef.current.select();
     }
   }, [isEditing]);
+
+  // Apply custom styles to the element
+  useEffect(() => {
+    if (elementRef.current && Object.keys(elementStyles).length > 0) {
+      Object.entries(elementStyles).forEach(([property, value]) => {
+        elementRef.current!.style.setProperty(property, value);
+      });
+    }
+  }, [elementStyles]);
 
   const handleClick = (e: React.MouseEvent) => {
     if (!isVisualEditMode) return;
@@ -63,7 +76,8 @@ const EditableElement: React.FC<EditableElementProps> = ({
       field,
       value,
       bounds,
-      element: elementRef.current || undefined
+      element: elementRef.current || undefined,
+      styles: elementStyles
     });
 
     if (type === 'text') {
@@ -133,6 +147,17 @@ const EditableElement: React.FC<EditableElementProps> = ({
               animate={{ opacity: 1 }}
               className="absolute inset-0 bg-pink-500/20 border-2 border-pink-500 rounded pointer-events-none z-10"
             />
+          )}
+
+          {/* Element Type Badge */}
+          {(isHovered || isSelected) && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="absolute -top-6 left-0 bg-lime-400 text-black px-2 py-1 rounded text-xs font-bold uppercase z-20 pointer-events-none"
+            >
+              {type}
+            </motion.div>
           )}
         </>
       )}

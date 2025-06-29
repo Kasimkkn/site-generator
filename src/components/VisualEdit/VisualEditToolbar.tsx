@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Eye, EyeOff, Settings, Type, Image, MousePointer } from 'lucide-react';
 import { useVisualEdit } from '@/context/VisualEditContext';
+import StylePanel from './StylePanel';
 
 const VisualEditToolbar: React.FC = () => {
   const { isVisualEditMode, toggleVisualEditMode, selectedElement } = useVisualEdit();
@@ -34,7 +35,7 @@ const VisualEditToolbar: React.FC = () => {
           <div className="bg-black border-2 border-lime-400 px-4 py-2 rounded-lg flex items-center gap-2">
             <MousePointer className="w-4 h-4 text-lime-400 animate-pulse" />
             <span className="text-lime-400 font-bold text-sm">VISUAL EDIT MODE</span>
-            <span className="text-gray-400 text-xs">Click elements to edit</span>
+            <span className="text-gray-400 text-xs">Click elements to edit • Selected elements show style panel</span>
           </div>
         </motion.div>
       )}
@@ -60,10 +61,13 @@ const VisualEditToolbar: React.FC = () => {
           </div>
           
           <div className="text-white text-sm">
-            Click outside to deselect
+            Use the style panel to customize appearance
           </div>
         </motion.div>
       )}
+
+      {/* Style Panel */}
+      {isVisualEditMode && <StylePanel />}
     </>
   );
 };

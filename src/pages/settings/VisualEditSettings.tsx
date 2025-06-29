@@ -4,6 +4,8 @@ import { LayoutContext } from '@/context/LayoutContext';
 import { VisualEditProvider } from '@/context/VisualEditContext';
 import VisualEditToolbar from '@/components/VisualEdit/VisualEditToolbar';
 import VisualEditHero from '@/components/hero/VisualEditHero';
+import VisualEditAbout from '@/components/about/VisualEditAbout';
+import VisualEditService from '@/components/service/VisualEditService';
 import SideBar from '@/components/settingsPanelComponents/SideBar';
 import { motion } from 'framer-motion';
 
@@ -54,8 +56,18 @@ const VisualEditSettings: React.FC = () => {
                             <VisualEditHero data={activePageContent.hero} />
                         )}
 
+                        {/* About Section */}
+                        {activePageContent.about && (
+                            <VisualEditAbout data={activePageContent.about} />
+                        )}
+
+                        {/* Service Section */}
+                        {activePageContent.service && (
+                            <VisualEditService data={activePageContent.service} />
+                        )}
+
                         {/* Placeholder for no content */}
-                        {!activePageContent.hero && (
+                        {!activePageContent.hero && !activePageContent.about && !activePageContent.service && (
                             <div className="min-h-screen flex items-center justify-center">
                                 <motion.div 
                                     className="text-center"

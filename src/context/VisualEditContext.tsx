@@ -9,6 +9,7 @@ interface SelectedElement {
   value: any;
   bounds?: DOMRect;
   element?: HTMLElement;
+  styles?: Record<string, string>;
 }
 
 interface VisualEditContextType {
@@ -19,6 +20,8 @@ interface VisualEditContextType {
   hoveredElement: string | null;
   setHoveredElement: (id: string | null) => void;
   updateContent: (section: string, field: string, value: any) => void;
+  updateStyles: (section: string, field: string, styles: Record<string, string>) => void;
+  customStyles: Record<string, Record<string, Record<string, string>>>;
 }
 
 const VisualEditContext = createContext<VisualEditContextType | null>(null);
@@ -43,6 +46,7 @@ export const VisualEditProvider: React.FC<VisualEditProviderProps> = ({
   const [isVisualEditMode, setIsVisualEditMode] = useState(false);
   const [selectedElement, setSelectedElement] = useState<SelectedElement | null>(null);
   const [hoveredElement, setHoveredElement] = useState<string | null>(null);
+  const [customStyles, setCustomStyles] = useState<Record<string, Record<string, Record<string, string>>>>({});
 
   const toggleVisualEditMode = () => {
     setIsVisualEditMode(!isVisualEditMode);
@@ -55,6 +59,23 @@ export const VisualEditProvider: React.FC<VisualEditProviderProps> = ({
     setSelectedElement(null);
   };
 
+  const updateStyles = (section: string, field: string, styles: Record<string, string>) => {
+    setCustomStyles(prev => ({
+      ...prev,
+      [section]: {
+        ...prev[section],
+        [field]: {
+          ...prev[section]?.[field],
+          ...styles
+        }
+      }
+    }));
+  };
+
+  const getElementStyles = (section: string, field: string) => {
+    return customStyles[section]?.[field] || {};
+  };
+
   return (
     <VisualEditContext.Provider
       value={{
@@ -65,6 +86,8 @@ export const VisualEditProvider: React.FC<VisualEditProviderProps> = ({
         hoveredElement,
         setHoveredElement,
         updateContent,
+        updateStyles,
+        customStyles,
       }}
     >
       {children}
