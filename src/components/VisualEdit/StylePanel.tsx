@@ -1,6 +1,7 @@
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Palette, Type, Layout, Square, X } from 'lucide-react';
+import { Palette, Type, Layout, Square, X, ChevronDown } from 'lucide-react';
 import { useVisualEdit } from '@/context/VisualEditContext';
 
 const StylePanel: React.FC = () => {
@@ -27,9 +28,21 @@ const StylePanel: React.FC = () => {
   ];
 
   const colorOptions = [
-    { name: 'Background', property: 'background-color', colors: ['#000000', '#ffffff', '#a3e635', '#ec4899', '#f97316', '#3b82f6', '#8b5cf6'] },
-    { name: 'Text Color', property: 'color', colors: ['#000000', '#ffffff', '#a3e635', '#ec4899', '#f97316', '#3b82f6', '#8b5cf6', '#6b7280'] },
-    { name: 'Border Color', property: 'border-color', colors: ['#000000', '#ffffff', '#a3e635', '#ec4899', '#f97316', '#3b82f6', '#8b5cf6'] },
+    { 
+      name: 'Background', 
+      property: 'background-color', 
+      colors: ['#000000', '#ffffff', '#a3e635', '#ec4899', '#f97316', '#3b82f6', '#8b5cf6', '#ef4444', '#10b981', '#f59e0b'] 
+    },
+    { 
+      name: 'Text Color', 
+      property: 'color', 
+      colors: ['#000000', '#ffffff', '#a3e635', '#ec4899', '#f97316', '#3b82f6', '#8b5cf6', '#6b7280', '#ef4444', '#10b981'] 
+    },
+    { 
+      name: 'Border Color', 
+      property: 'border-color', 
+      colors: ['#000000', '#ffffff', '#a3e635', '#ec4899', '#f97316', '#3b82f6', '#8b5cf6', '#ef4444', '#10b981', '#f59e0b'] 
+    },
   ];
 
   return (
@@ -37,11 +50,11 @@ const StylePanel: React.FC = () => {
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 20 }}
-      className="fixed top-4 right-20 z-50 w-80 bg-black border-2 border-lime-400 rounded-lg shadow-2xl"
+      className="fixed top-4 right-20 z-50 w-80 bg-gray-900 border border-gray-700 rounded-lg shadow-2xl"
     >
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-lime-400/30">
-        <h3 className="text-lime-400 font-bold">STYLE EDITOR</h3>
+      <div className="flex items-center justify-between p-4 border-b border-gray-700">
+        <h3 className="text-white font-semibold">Style Editor</h3>
         <button
           onClick={() => setSelectedElement(null)}
           className="text-gray-400 hover:text-white transition-colors"
@@ -51,15 +64,15 @@ const StylePanel: React.FC = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-lime-400/30">
+      <div className="flex border-b border-gray-700">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id as any)}
-            className={`flex-1 flex items-center justify-center gap-2 py-3 text-xs font-bold transition-all ${
+            className={`flex-1 flex items-center justify-center gap-2 py-3 text-xs font-medium transition-all ${
               activeTab === tab.id
-                ? 'bg-lime-400 text-black'
-                : 'text-gray-400 hover:text-lime-400'
+                ? 'bg-blue-600 text-white'
+                : 'text-gray-400 hover:text-white hover:bg-gray-800'
             }`}
           >
             <tab.icon className="w-3 h-3" />
@@ -74,23 +87,29 @@ const StylePanel: React.FC = () => {
           <div className="space-y-6">
             {colorOptions.map((option) => (
               <div key={option.property}>
-                <label className="block text-gray-300 text-sm font-medium mb-2">
+                <label className="block text-gray-300 text-sm font-medium mb-3">
                   {option.name}
                 </label>
-                <div className="flex flex-wrap gap-2">
+                <div className="grid grid-cols-5 gap-2 mb-3">
                   {option.colors.map((color) => (
                     <button
                       key={color}
                       onClick={() => handleStyleChange(option.property, color)}
-                      className="w-8 h-8 rounded border-2 border-gray-600 hover:border-lime-400 transition-colors"
+                      className="w-8 h-8 rounded border border-gray-600 hover:border-blue-400 transition-colors relative group"
                       style={{ backgroundColor: color }}
-                    />
+                      title={color}
+                    >
+                      <span className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                        {color}
+                      </span>
+                    </button>
                   ))}
                 </div>
                 <input
                   type="color"
                   onChange={(e) => handleStyleChange(option.property, e.target.value)}
-                  className="mt-2 w-full h-8 rounded border border-gray-600 bg-transparent"
+                  className="w-full h-8 rounded border border-gray-600 bg-transparent cursor-pointer"
+                  title="Custom color picker"
                 />
               </div>
             ))}
@@ -102,43 +121,65 @@ const StylePanel: React.FC = () => {
           <div className="space-y-4">
             <div>
               <label className="block text-gray-300 text-sm font-medium mb-2">Font Size</label>
-              <input
-                type="range"
-                min="12"
-                max="72"
-                step="2"
-                onChange={(e) => handleStyleChange('font-size', `${e.target.value}px`)}
-                className="w-full"
-              />
+              <div className="flex items-center gap-2">
+                <input
+                  type="range"
+                  min="8"
+                  max="72"
+                  step="1"
+                  onChange={(e) => handleStyleChange('font-size', `${e.target.value}px`)}
+                  className="flex-1 h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
+                />
+                <span className="text-xs text-gray-400 w-8">px</span>
+              </div>
             </div>
+
             <div>
               <label className="block text-gray-300 text-sm font-medium mb-2">Font Weight</label>
-              <select
-                onChange={(e) => handleStyleChange('font-weight', e.target.value)}
-                className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
-              >
-                <option value="300">Light</option>
-                <option value="400">Normal</option>
-                <option value="500">Medium</option>
-                <option value="600">Semibold</option>
-                <option value="700">Bold</option>
-                <option value="800">Extra Bold</option>
-                <option value="900">Black</option>
-              </select>
+              <div className="relative">
+                <select
+                  onChange={(e) => handleStyleChange('font-weight', e.target.value)}
+                  className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white appearance-none cursor-pointer"
+                >
+                  <option value="100">Thin (100)</option>
+                  <option value="200">Extra Light (200)</option>
+                  <option value="300">Light (300)</option>
+                  <option value="400">Normal (400)</option>
+                  <option value="500">Medium (500)</option>
+                  <option value="600">Semibold (600)</option>
+                  <option value="700">Bold (700)</option>
+                  <option value="800">Extra Bold (800)</option>
+                  <option value="900">Black (900)</option>
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+              </div>
             </div>
+
             <div>
               <label className="block text-gray-300 text-sm font-medium mb-2">Text Align</label>
-              <div className="flex gap-2">
+              <div className="grid grid-cols-4 gap-1">
                 {['left', 'center', 'right', 'justify'].map((align) => (
                   <button
                     key={align}
                     onClick={() => handleStyleChange('text-align', align)}
-                    className="flex-1 py-2 px-3 bg-gray-800 hover:bg-gray-700 border border-gray-600 rounded text-xs font-medium text-white transition-colors"
+                    className="py-2 px-2 bg-gray-800 hover:bg-gray-700 border border-gray-600 rounded text-xs font-medium text-white transition-colors"
                   >
-                    {align.charAt(0).toUpperCase() + align.slice(1)}
+                    {align.charAt(0).toUpperCase()}
                   </button>
                 ))}
               </div>
+            </div>
+
+            <div>
+              <label className="block text-gray-300 text-sm font-medium mb-2">Line Height</label>
+              <input
+                type="range"
+                min="1"
+                max="3"
+                step="0.1"
+                onChange={(e) => handleStyleChange('line-height', e.target.value)}
+                className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
+              />
             </div>
           </div>
         )}
@@ -148,34 +189,40 @@ const StylePanel: React.FC = () => {
           <div className="space-y-4">
             <div>
               <label className="block text-gray-300 text-sm font-medium mb-2">Display</label>
-              <select
-                onChange={(e) => handleStyleChange('display', e.target.value)}
-                className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
-              >
-                <option value="block">Block</option>
-                <option value="inline-block">Inline Block</option>
-                <option value="flex">Flex</option>
-                <option value="grid">Grid</option>
-                <option value="none">Hidden</option>
-              </select>
+              <div className="relative">
+                <select
+                  onChange={(e) => handleStyleChange('display', e.target.value)}
+                  className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white appearance-none cursor-pointer"
+                >
+                  <option value="block">Block</option>
+                  <option value="inline-block">Inline Block</option>
+                  <option value="flex">Flex</option>
+                  <option value="grid">Grid</option>
+                  <option value="none">Hidden</option>
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+              </div>
             </div>
-            <div>
-              <label className="block text-gray-300 text-sm font-medium mb-2">Width</label>
-              <input
-                type="text"
-                placeholder="e.g., 100%, 300px, auto"
-                onChange={(e) => handleStyleChange('width', e.target.value)}
-                className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
-              />
-            </div>
-            <div>
-              <label className="block text-gray-300 text-sm font-medium mb-2">Height</label>
-              <input
-                type="text"
-                placeholder="e.g., 200px, auto"
-                onChange={(e) => handleStyleChange('height', e.target.value)}
-                className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
-              />
+
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-gray-300 text-sm font-medium mb-2">Width</label>
+                <input
+                  type="text"
+                  placeholder="e.g., 100%, 300px"
+                  onChange={(e) => handleStyleChange('width', e.target.value)}
+                  className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-300 text-sm font-medium mb-2">Height</label>
+                <input
+                  type="text"
+                  placeholder="e.g., 200px, auto"
+                  onChange={(e) => handleStyleChange('height', e.target.value)}
+                  className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white text-sm"
+                />
+              </div>
             </div>
           </div>
         )}
@@ -183,31 +230,44 @@ const StylePanel: React.FC = () => {
         {/* Spacing Tab */}
         {activeTab === 'spacing' && (
           <div className="space-y-4">
-            {['padding', 'margin'].map((spacing) => (
+            {['margin', 'padding'].map((spacing) => (
               <div key={spacing}>
-                <label className="block text-gray-300 text-sm font-medium mb-2 capitalize">
+                <label className="block text-gray-300 text-sm font-medium mb-3 capitalize">
                   {spacing}
                 </label>
                 <div className="grid grid-cols-2 gap-2">
                   {['top', 'right', 'bottom', 'left'].map((side) => (
-                    <input
-                      key={side}
-                      type="text"
-                      placeholder={`${side} (px)`}
-                      onChange={(e) => handleStyleChange(`${spacing}-${side}`, e.target.value)}
-                      className="bg-gray-800 border border-gray-600 rounded px-2 py-1 text-white text-xs"
-                    />
+                    <div key={side}>
+                      <label className="block text-xs text-gray-400 mb-1 capitalize">{side}</label>
+                      <input
+                        type="text"
+                        placeholder="0px"
+                        onChange={(e) => handleStyleChange(`${spacing}-${side}`, e.target.value)}
+                        className="w-full bg-gray-800 border border-gray-600 rounded px-2 py-1 text-white text-xs"
+                      />
+                    </div>
                   ))}
                 </div>
               </div>
             ))}
+            
             <div>
               <label className="block text-gray-300 text-sm font-medium mb-2">Border Radius</label>
               <input
                 type="text"
                 placeholder="e.g., 8px, 50%"
                 onChange={(e) => handleStyleChange('border-radius', e.target.value)}
-                className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white"
+                className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white text-sm"
+              />
+            </div>
+
+            <div>
+              <label className="block text-gray-300 text-sm font-medium mb-2">Border Width</label>
+              <input
+                type="text"
+                placeholder="e.g., 1px, 2px"
+                onChange={(e) => handleStyleChange('border-width', e.target.value)}
+                className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white text-sm"
               />
             </div>
           </div>

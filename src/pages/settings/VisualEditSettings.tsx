@@ -3,9 +3,15 @@ import React, { useContext } from 'react';
 import { LayoutContext } from '@/context/LayoutContext';
 import { VisualEditProvider } from '@/context/VisualEditContext';
 import VisualEditToolbar from '@/components/VisualEdit/VisualEditToolbar';
+import VisualEditNavbar from '@/components/navbar/VisualEditNavbar';
 import VisualEditHero from '@/components/hero/VisualEditHero';
 import VisualEditAbout from '@/components/about/VisualEditAbout';
 import VisualEditService from '@/components/service/VisualEditService';
+import VisualEditProjects from '@/components/projects/VisualEditProjects';
+import VisualEditTeams from '@/components/teams/VisualEditTeams';
+import VisualEditReviews from '@/components/reviews/VisualEditReviews';
+import VisualEditContact from '@/components/contact/VisualEditContact';
+import VisualEditFooter from '@/components/footer/VisualEditFooter';
 import SideBar from '@/components/settingsPanelComponents/SideBar';
 import { motion } from 'framer-motion';
 
@@ -51,6 +57,11 @@ const VisualEditSettings: React.FC = () => {
                     
                     {/* Page Content */}
                     <div className="relative">
+                        {/* Navbar Section */}
+                        {activePageContent.navbar && (
+                            <VisualEditNavbar data={activePageContent.navbar} />
+                        )}
+
                         {/* Hero Section */}
                         {activePageContent.hero && (
                             <VisualEditHero data={activePageContent.hero} />
@@ -66,8 +77,33 @@ const VisualEditSettings: React.FC = () => {
                             <VisualEditService data={activePageContent.service} />
                         )}
 
+                        {/* Projects Section */}
+                        {activePageContent.projects && (
+                            <VisualEditProjects data={activePageContent.projects} />
+                        )}
+
+                        {/* Teams Section */}
+                        {activePageContent.teams && (
+                            <VisualEditTeams data={activePageContent.teams} />
+                        )}
+
+                        {/* Reviews Section */}
+                        {activePageContent.reviews && (
+                            <VisualEditReviews data={activePageContent.reviews} />
+                        )}
+
+                        {/* Contact Section */}
+                        {activePageContent.contact && (
+                            <VisualEditContact data={activePageContent.contact} />
+                        )}
+
+                        {/* Footer Section */}
+                        {activePageContent.footer && (
+                            <VisualEditFooter data={activePageContent.footer} />
+                        )}
+
                         {/* Placeholder for no content */}
-                        {!activePageContent.hero && !activePageContent.about && !activePageContent.service && (
+                        {!Object.keys(activePageContent).length && (
                             <div className="min-h-screen flex items-center justify-center">
                                 <motion.div 
                                     className="text-center"

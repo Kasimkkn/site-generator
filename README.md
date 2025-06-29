@@ -1,290 +1,199 @@
 
-# DevBuilder - Brutalist SaaS Website Builder
+# Visual Website Builder
 
-A cutting-edge, brutalist-inspired website builder that embodies digital rebellion and creative freedom. Built with React, TypeScript, and modern web technologies featuring a comprehensive authentication system and customizable theming.
+A powerful, modern website builder with visual editing capabilities built with React, TypeScript, and Tailwind CSS.
 
 ## 🚀 Features
 
-### **Digital Rebellion at Its Core**
-- **Brutalist Design System** - Grid-heavy layouts with intentionally broken sections
-- **Chaos-Driven UI** - Asymmetrical layouts, overlapping elements, and color clashing
-- **Motion-First Interactions** - Framer Motion animations throughout
-- **No-Code Freedom** - Build without boundaries using drag-and-drop tools
+### Visual Editing System
+- **Live Visual Editor**: Click on any element to edit content and styles in real-time
+- **Style Panel**: Comprehensive styling controls for colors, typography, layout, and spacing
+- **Hover Effects**: Visual indicators when hovering over editable elements
+- **Instant Preview**: See changes immediately as you make them
 
-### **Authentication & Security**
-- **Secure Auth System** - Comprehensive login/register flow with auth guards
-- **Protected Routes** - Settings and admin areas protected by authentication
-- **Local Storage Integration** - Persistent authentication state
-- **Demo Credentials** - kasimkkn@gmail.com / Kasim@123
+### Comprehensive Component Library
+- **Hero Sections**: Multiple hero layouts with customizable content
+- **About Sections**: Flexible about us components with cards and images
+- **Service Sections**: Service showcase with pricing and descriptions
+- **Project Portfolio**: Project galleries with images and links
+- **Team Sections**: Team member profiles with social links
+- **Testimonials**: Customer review and testimonial components
+- **Contact Forms**: Contact information and form components
+- **Navigation**: Responsive navbar components
+- **Footer**: Multi-column footer with links and company info
 
-### **Modern SaaS Architecture**
-- **Component-Based Builder** - Modular design system with reusable components
-- **Real-Time Preview** - See your changes instantly
-- **Export Capabilities** - Clean Reactjs/TailwindCss coden export functionality
-- **Template Library** - Brutalist-inspired templates that break conventions
+### Advanced Styling Controls
+- **Color Customization**: Background, text, and border color controls
+- **Typography**: Font size, weight, alignment, and line height adjustments
+- **Layout Controls**: Display, width, height, and positioning options
+- **Spacing**: Margin, padding, and border radius controls
+- **Real-time Preview**: All changes applied instantly
 
-### **Customizable Theming System**
-- **Dynamic Theme Engine** - Real-time theme switching with brutalist presets
-- **Color Customization** - Full control over primary, accent, and secondary colors
-- **Preset Themes** - Rebellion, Neon Chaos, and Digital Punk themes
-- **Export-Ready Themes** - Theme data ready for backend integration
+### Content Management
+- **Inline Editing**: Click-to-edit text content
+- **Image Management**: Easy image upload and replacement
+- **Dynamic Content**: Add, edit, and remove content sections
+- **Multi-page Support**: Manage multiple pages with different layouts
 
-### **Developer Experience**
-- **TypeScript** - Full type safety throughout the application
-- **Modern React** - Hooks, Context API, and latest React patterns
-- **Tailwind CSS** - Utility-first styling with custom brutalist extensions
-- **Framer Motion** - Smooth animations and micro-interactions
-- **Protected Routing** - Auth guards for secure areas
+## 🛠️ Technologies Used
 
-## 🎨 Design Philosophy
+- **React 18** - Modern React with hooks and functional components
+- **TypeScript** - Type-safe development
+- **Tailwind CSS** - Utility-first CSS framework
+- **Framer Motion** - Smooth animations and transitions
+- **Vite** - Fast build tool and development server
+- **Lucide React** - Beautiful icons
+- **React Router** - Client-side routing
 
-DevBuilder embraces a **brutalist web design** approach:
+## 📦 Installation
 
-- **Grid-Heavy Foundation** with intentionally broken grid sections
-- **High Contrast** color schemes with strategic color clashing
-- **Asymmetrical Layouts** that defy conventional web design rules
-- **Overlapping Layers** and complex compositions
-- **Experimental Typography** mixing weights, sizes, and orientations
-- **Chaotic but Purposeful** element placement
-
-## 🛠 Tech Stack
-
-- **Frontend**: React 18, TypeScript, Vite
-- **Styling**: Tailwind CSS, Framer Motion
-- **UI Components**: Radix UI, Shadcn/ui
-- **State Management**: React Context API
-- **Icons**: Lucide React
-- **Charts**: Recharts
-- **Authentication**: Custom auth system with localStorage
-- **Routing**: React Router DOM with protected routes
-- **Theme System**: Dynamic theming with CSS custom properties
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js 18+ 
-- npm, yarn, or bun
-
-### Installation
-
-1. **Clone the repository**
+1. Clone the repository:
 ```bash
-git clone [repository-url]
-cd devbuilder
+git clone <repository-url>
+cd visual-website-builder
 ```
 
-2. **Install dependencies**
+2. Install dependencies:
 ```bash
 npm install
-# or
-yarn install
-# or
-bun install
 ```
 
-3. **Start the development server**
+3. Start the development server:
 ```bash
 npm run dev
-# or
-yarn dev
-# or  
-bun dev
 ```
 
-4. **Open your browser**
-Navigate to `http://localhost:5173`
+4. Open your browser and navigate to `http://localhost:5173`
 
-## 📁 Project Structure
+## 🎨 How to Use Visual Editor
+
+### Enabling Visual Edit Mode
+1. Navigate to `/settings` in your application
+2. Click the "VISUAL" tab in the top toolbar
+3. Click the eye icon (👁️) to enable visual editing mode
+
+### Editing Content
+1. **Text Editing**: Click on any text element to edit inline
+2. **Style Editing**: Select an element to open the style panel
+3. **Image Editing**: Click on images to replace or add new ones
+
+### Style Panel Controls
+
+#### Colors Tab
+- **Background Color**: Change element background
+- **Text Color**: Modify text color
+- **Border Color**: Adjust border colors
+- **Color Picker**: Use custom colors with the color picker
+
+#### Typography Tab
+- **Font Size**: Adjust text size with slider (8px - 72px)
+- **Font Weight**: Choose from Thin to Black (100-900)
+- **Text Alignment**: Left, center, right, or justify
+- **Line Height**: Control line spacing (1.0 - 3.0)
+
+#### Layout Tab
+- **Display**: Block, inline-block, flex, grid, or hidden
+- **Width**: Set custom width (px, %, auto)
+- **Height**: Set custom height (px, auto)
+
+#### Spacing Tab
+- **Margin**: Top, right, bottom, left spacing
+- **Padding**: Internal spacing controls
+- **Border Radius**: Rounded corners
+- **Border Width**: Border thickness
+
+## 🏗️ Project Structure
 
 ```
 src/
-├── components/           # Reusable UI components
-│   ├── brutalist/       # Brutalist-specific components
-│   ├── ui/              # Base UI components (shadcn/ui)
-│   ├── auth/            # Authentication components
-│   │   ├── AuthLayout.tsx     # Brutalist auth layout
-│   │   ├── AuthGuard.tsx      # Route protection
-│   │   └── BrutalistLoginForm.tsx # Styled login form
-│   ├── hero/            # Hero section variants
-│   ├── navbar/          # Navigation components
-│   └── ThemeSelector.tsx # Theme customization
-├── pages/               # Application pages
-│   ├── Index.tsx        # Landing page
-│   ├── Auth.tsx         # Authentication page
-│   └── settings/        # Protected settings pages
-├── context/             # React Context providers
-│   ├── LayoutContext.tsx
-│   └── changeTheme.tsx  # Theme management
-├── hooks/               # Custom React hooks
-├── lib/                 # Utility functions
-├── types/               # TypeScript type definitions
-└── styles/              # Global styles and configurations
+├── components/
+│   ├── VisualEdit/
+│   │   ├── EditableElement.tsx      # Core editable wrapper
+│   │   ├── StylePanel.tsx           # Style editing panel
+│   │   └── VisualEditToolbar.tsx    # Visual edit controls
+│   ├── hero/
+│   │   ├── Hero.tsx                 # Standard hero component
+│   │   └── VisualEditHero.tsx       # Visual edit version
+│   ├── about/
+│   ├── service/
+│   ├── projects/
+│   ├── teams/
+│   ├── reviews/
+│   ├── contact/
+│   ├── navbar/
+│   └── footer/
+├── context/
+│   ├── VisualEditContext.tsx        # Visual editing state
+│   └── LayoutContext.tsx            # Layout management
+├── pages/
+│   └── settings/
+│       ├── VisualEditSettings.tsx   # Visual editor page
+│       └── SettingsLayout.tsx       # Settings wrapper
+└── types/
+    └── global.ts                    # TypeScript definitions
 ```
 
-## 🔐 Authentication System
+## 🔧 Customization
 
-### **Login System**
-- Demo credentials: `kasimkkn@gmail.com` / `Kasim@123`
-- Persistent authentication via localStorage
-- Brutalist-styled auth forms with chaos-driven design
+### Adding New Components
+1. Create the standard component in its respective folder
+2. Create a visual edit version prefixed with `VisualEdit`
+3. Wrap editable elements with `EditableElement`
+4. Add the component to `VisualEditSettings.tsx`
 
-### **Protected Routes**
-- `/settings` - Protected by AuthGuard
-- Automatic redirect to `/auth` for unauthenticated users
-- Seamless navigation after login
+### Extending Style Controls
+Edit `StylePanel.tsx` to add new style options:
+- Add new tabs in the `tabs` array
+- Implement the UI in the content area
+- Use `handleStyleChange` to apply styles
 
-### **Auth Components**
-- `AuthLayout` - Brutalist authentication layout
-- `AuthGuard` - Route protection component
-- `BrutalistLoginForm` - Styled login form
-- Integration with existing RegisterForm, ForgotPasswordForm
+### Custom Styling
+The visual editor supports any CSS property. Add custom controls in the StylePanel for specific needs.
 
-## 🎯 Key Components
+## 🚢 Deployment
 
-### **Brutalist Landing Page**
-- `BrutalistHero` - Chaotic hero section with overlapping typography
-- `BrutalistFeatures` - Grid-destroying feature showcase
-- `BrutalistTestimonials` - Overlapping testimonial cards
-- `BrutalistPricing` - Avant-garde pricing tables
-- `BrutalistFooter` - Industrial footer design
-
-### **Authentication System**
-- `AuthLayout` - Brutalist auth page layout
-- `BrutalistLoginForm` - Chaos-driven login form
-- `AuthGuard` - Route protection with automatic redirects
-
-### **Website Builder**
-- Component library with multiple variants (Hero, Navbar, Footer, etc.)
-- Real-time preview system
-- Content management with form builders
-- Settings panel for component customization
-
-### **Theme System**
-- `ThemeSelector` - Visual theme customization interface
-- Dynamic CSS custom properties
-- Preset brutalist themes
-- Real-time theme application
-
-## 🎨 Styling & Theming
-
-### **Theme System**
-- **Dynamic Themes** - Switch between Rebellion, Neon Chaos, Digital Punk
-- **Custom Colors** - Full control over primary, accent, secondary colors
-- **CSS Custom Properties** - Seamless theme integration
-- **Export Ready** - Theme data prepared for backend integration
-
-### **Brutalist Color Palettes**
-- **Rebellion**: Electric lime (#00FF41), Neon pink (#FF006E), Warning orange (#FF8500)
-- **Neon Chaos**: Pink primary, Lime text, Orange accents
-- **Digital Punk**: Orange primary, Lime accents, Pink secondary
-
-### **Animation Library**
-- Accordion animations for expandable content
-- Fade animations for smooth transitions
-- Scale animations for emphasis
-- Slide animations for sidebars/drawers
-- Combined animations for complex transitions
-
-## 🔧 Development
-
-### **Available Scripts**
-```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run preview      # Preview production build
-npm run lint         # Run ESLint
-npm run type-check   # Run TypeScript checks
-```
-
-### **Authentication Flow**
-1. User visits protected route (`/settings`)
-2. AuthGuard checks localStorage for `isAuthenticated`
-3. Redirects to `/auth` if not authenticated
-4. Login form validates credentials
-5. Sets authentication state in localStorage
-6. Redirects to intended route
-
-### **Adding New Components**
-1. Create component in appropriate category folder
-2. Add to component index file
-3. Update TypeScript types if needed
-4. Add to settings panel if configurable
-5. Apply brutalist theming using theme context
-
-### **Extending the Builder**
-1. Define component data types in `src/types/global.ts`
-2. Create component variants in respective folders
-3. Add to component map in `src/components/index.tsx`
-4. Create settings panel configuration
-5. Integrate with theme system
-
-## 🌐 Deployment
-
-The application can be deployed to any static hosting service:
-
-- **Vercel** (Recommended)
-- **Netlify**
-- **GitHub Pages**
-- **AWS S3 + CloudFront**
-
-### **Build for Production**
+### Build for Production
 ```bash
 npm run build
 ```
 
-The built files will be in the `dist` directory.
-
-### **Environment Setup**
-No environment variables required for basic functionality. Authentication currently uses demo credentials stored in component logic.
-
-## 🔐 Security Notes
-
-- Current authentication is demo-only with hardcoded credentials
-- localStorage used for authentication state (suitable for demo/development)
-- Protected routes implemented with client-side guards
-- For production: integrate with proper backend authentication system
-
-## 🎉 Theme Export Integration
-
-The theme system is designed for easy backend integration:
-
-```javascript
-// Theme data structure for export
-const themeData = {
-  primary: "#00FF41",
-  background: "#000000", 
-  text: "#ffffff",
-  accent: "#FF006E",
-  secondary: "#FF8500"
-};
-
-// Ready for API integration
-localStorage.getItem("devbuilder-theme");
+### Preview Production Build
+```bash
+npm run preview
 ```
+
+The built files will be in the `dist` directory, ready for deployment to any static hosting service.
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+2. Create a feature branch: `git checkout -b feature/new-feature`
+3. Commit your changes: `git commit -m 'Add new feature'`
+4. Push to the branch: `git push origin feature/new-feature`
+5. Submit a pull request
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🎉 Acknowledgments
+## 🆘 Support
 
-- **Brutalist Web Design** movement for inspiration
-- **React Community** for amazing tools and libraries
-- **Tailwind CSS** for utility-first styling approach
-- **Framer Motion** for smooth animation capabilities
+For support and questions:
+- Open an issue on GitHub
+- Check the documentation
+- Review the component examples
+
+## 🔮 Roadmap
+
+- [ ] Drag and drop component reordering
+- [ ] Template library
+- [ ] Export to HTML/CSS
+- [ ] Advanced animation controls
+- [ ] Component marketplace
+- [ ] Multi-language support
+- [ ] Database integration
+- [ ] SEO optimization tools
 
 ---
 
-**Built with digital rebellion in mind. Break the rules. Build the future.**
-
-🚀 **DevBuilder** - Where chaos meets creativity, now with secure authentication and infinite customization.
-
-**Demo Access**: kasimkkn@gmail.com / Kasim@123
+Built with ❤️ using React, TypeScript, and Tailwind CSS

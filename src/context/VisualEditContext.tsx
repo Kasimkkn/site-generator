@@ -1,5 +1,5 @@
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useCallback } from 'react';
 
 interface SelectedElement {
   id: string;
@@ -22,6 +22,7 @@ interface VisualEditContextType {
   updateContent: (section: string, field: string, value: any) => void;
   updateStyles: (section: string, field: string, styles: Record<string, string>) => void;
   customStyles: Record<string, Record<string, Record<string, string>>>;
+  getElementStyles: (section: string, field: string) => Record<string, string>;
 }
 
 const VisualEditContext = createContext<VisualEditContextType | null>(null);
@@ -48,18 +49,24 @@ export const VisualEditProvider: React.FC<VisualEditProviderProps> = ({
   const [hoveredElement, setHoveredElement] = useState<string | null>(null);
   const [customStyles, setCustomStyles] = useState<Record<string, Record<string, Record<string, string>>>>({});
 
-  const toggleVisualEditMode = () => {
+  const toggleVisualEditMode = useCallback(() => {
     setIsVisualEditMode(!isVisualEditMode);
     setSelectedElement(null);
     setHoveredElement(null);
-  };
+  }, [isVisualEditMode]);
 
-  const updateContent = (section: string, field: string, value: any) => {
+  const updateContent = useCallback((section: string, field: string, value: any) => {
     onUpdateContent(section, field, value);
-    setSelectedElement(null);
-  };
+    // Force re-render by updating selected element
+    if (selectedElement) {
+      setSelectedElement({
+        ...selectedElement,
+        value
+      });
+    }
+  }, [onUpdateContent, selectedElement]);
 
-  const updateStyles = (section: string, field: string, styles: Record<string, string>) => {
+  const updateStyles = useCallback((section: string, field: string, styles: Record<string, string>) => {
     setCustomStyles(prev => ({
       ...prev,
       [section]: {
@@ -70,11 +77,20 @@ export const VisualEditProvider: React.FC<VisualEditProviderProps> = ({
         }
       }
     }));
-  };
 
-  const getElementStyles = (section: string, field: string) => {
+    // Apply styles to all matching elements in the DOM
+    const elementId = `${section}-${field}`;
+    const elements = document.querySelectorAll(`[data-editable-id="${elementId}"]`);
+    elements.forEach(element => {
+      Object.entries(styles).forEach(([property, value]) => {
+        (element as HTMLElement).style.setProperty(property, value);
+      });
+    });
+  }, []);
+
+  const getElementStyles = useCallback((section: string, field: string) => {
     return customStyles[section]?.[field] || {};
-  };
+  }, [customStyles]);
 
   return (
     <VisualEditContext.Provider
@@ -88,6 +104,7 @@ export const VisualEditProvider: React.FC<VisualEditProviderProps> = ({
         updateContent,
         updateStyles,
         customStyles,
+        getElementStyles,
       }}
     >
       {children}
